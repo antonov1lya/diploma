@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage{graphicx}
 
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+
 \usepackage[russian]{babel}
 
 \usepackage{amsmath,amssymb,amsfonts}
@@ -314,6 +317,176 @@ $$
     $$
         p_{001}p_{111}-p_{011}p_{101}=0.1 \cdot 0.1 - 0.15 \cdot 0.15 = -0.0125 \neq 0
     $$
-
 \end{example}
+\section{Равномерно наиболее мощный тест}
+Пусть $(X,Y,Z)^T$ -- случайный вектор, имеющий трехмерное распределение Бернулли.
+Запишем данное распределение в экспоненциальном виде:
+$$p(x_i,y_i,z_i)=P(X=x_i,Y=y_i,Z=z_i)=p_{000}^{(1-x_i)(1-y_i)(1-z_i)} p_{001}^{(1-x_i)(1-y_i)z_i}\ldots p_{111}^{x_i y_i z_i}=$$
+$$=\exp\{(1-x_i)(1-y_i)(1-z_i) \ln p_{000} + (1-x_i)(1-y_i)z_i \ln p_{001} + \ldots + x_i y_i z_i \ln p_{111}\}$$
+
+Пусть
+$
+    \begin{pmatrix}
+        x_1 \\
+        y_1 \\
+        z_1
+    \end{pmatrix},
+    \begin{pmatrix}
+        x_2 \\
+        y_2 \\
+        z_2
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        x_n \\
+        y_n \\
+        z_n
+    \end{pmatrix}
+$ -- повторная выборка из распределения случайного вектора $\begin{pmatrix}
+        X \\
+        Y \\
+        Z
+    \end{pmatrix}$.
+Плотность совместного распределения повторной выборки имеет вид
+$p(x,y,z) = \prod_{i=1}^n p(x_i,y_i,z_i)$.
+\begin{lemma}
+    $$
+        p(x,y,z)= \exp \Biggl\{ n \ln p_{000}\Biggl\}
+        \exp \Biggl\{ \ln  \left(\dfrac{p_{001}p_{111}}{p_{011}p_{101}}  \dfrac{p_{010}p_{100}}{p_{000}p_{110}}\right) \sum_{i=1}^n x_i y_i z_i +
+        \ln\left(\dfrac{p_{100}}{p_{000}}\right) \sum_{i=1}^{n} x_i + \ln\left(\dfrac{p_{010}}{p_{000}}\right) \sum_{i=1}^{n} y_i +
+    $$
+    $$
+        + \ln\left(\dfrac{p_{001}}{p_{000}}\right) \sum_{i=1}^{n} z_i +\ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) \sum_{i=1}^n x_i y_i +
+        \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) \sum_{i=1}^n x_i z_i +
+        \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \sum_{i=1}^n y_i z_i \Biggl\}
+    $$
+\end{lemma}
+
+\begin{proof}
+    $$
+        p(x,y,z) = \prod_{i=1}^n p(x_i,y_i,z_i) =
+        \prod_{i=1}^n \exp\{(1-x_i)(1-y_i)(1-z_i) \ln p_{000} + (1-x_i)(1-y_i)z_i \ln p_{001} + \ldots + x_i y_i z_i \ln p_{111}\} =
+    $$
+    $$
+        =\exp \Biggl\{ \ln p_{000} \sum_{i=1}^n (1-x_i)(1-y_i)(1-z_i) +
+        \ln p_{001} \sum_{i=1}^n (1-x_i)(1-y_i)z_i +
+        \ln p_{010} \sum_{i=1}^n (1-x_i)y_i(1-z_i)+
+    $$
+    $$
+        +\ln p_{011} \sum_{i=1}^n (1-x_i)y_i z_i+ \ln p_{100} \sum_{i=1}^n x_i(1-y_i)(1-z_i) + \ln p_{101} \sum_{i=1}^n x_i(1-y_i) z_i
+        + \ln p_{110} \sum_{i=1}^n x_i y_i (1-z_i) + \ln p_{111} \sum_{i=1}^n x_i y_i z_i \Biggr\} =
+    $$
+    $$
+        =\exp \Biggl\{ \ln p_{000} \Biggl(\sum_{i=1}^{n} 1 - \sum_{i=1}^{n}y_i - \sum_{i=1}^{n} x_i + \sum_{i=1}^{n} x_i y_i
+        - \sum_{i=1}^{n} z_i + \sum_{i=1}^{n} y_i z_i + \sum_{i=1}^{n} x_i z_i - \sum_{i=1}^{n} x_i y_i z_i \Biggr) +
+    $$
+    $$
+        + \ln p_{001} \Biggl( \sum_{i=1}^{n} z_i - \sum_{i=1}^{n} y_i z_i - \sum_{i=1}^{n} x_i z_i + \sum_{i=1}^{n} x_i y_i z_i \Biggr) +
+        \ln p_{010} \Biggl(\sum_{i=1}^{n} y_i - \sum_{i=1}^{n} y_i z_i - \sum_{i=1}^{n} x_i y_i + \sum_{i=1}^{n} x_i y_i z_i\Biggr) +
+    $$
+    $$
+        + \ln p_{011} \Biggl( \sum_{i=1}^n y_i z_i - \sum_{i=1}^{n} x_i y_i z_i \Biggr) +
+        \ln p_{100} \Biggl( \sum_{i=1}^{n} x_i - \sum_{i=1}^{n} x_i z_i - \sum_{i=1}^{n} x_i y_i + \sum_{i=1}^{n} x_i y_i z_i  \Biggr) +
+        \ln p_{101} \Biggl( \sum_{i=1}^{n} x_i z_i - \sum_{i=1}^{n} x_i y_i z_i \Biggr) +
+    $$
+    $$
+        + \ln p_{110} \Biggl( \sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i y_i z_i \Biggr) +
+        \ln p_{111} \sum_{i=1}^n x_i y_i z_i \Biggr\}=
+    $$
+    $$
+        = \exp \Biggl\{ n \ln p_{000}\Biggr\}
+        \exp \Biggl\{ \ln  \left(\dfrac{p_{001}p_{111}}{p_{011}p_{101}}  \dfrac{p_{010}p_{100}}{p_{000}p_{110}}\right) \sum_{i=1}^n x_i y_i z_i +
+        \ln\left(\dfrac{p_{100}}{p_{000}}\right) \sum_{i=1}^{n} x_i + \ln\left(\dfrac{p_{010}}{p_{000}}\right) \sum_{i=1}^{n} y_i +
+    $$
+    $$
+        + \ln\left(\dfrac{p_{001}}{p_{000}}\right) \sum_{i=1}^{n} z_i +\ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) \sum_{i=1}^n x_i y_i +
+        \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) \sum_{i=1}^n x_i z_i +
+        \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \sum_{i=1}^n y_i z_i \Biggr\}
+    $$
+\end{proof}
+
+Пусть $\theta = \ln  \left(\dfrac{p_{001}p_{111}}{p_{011}p_{101}}\right)$.
+Можно проверить, что если выполнено одно из условий:
+\begin{itemize}
+    \item $X_1 \ci X_2 \mid X_3$
+    \item $X_1 \ci X_3 \mid X_2$
+    \item $X_2 \ci X_3 \mid X_1$
+\end{itemize}
+то параметр $\theta$ примет значение $\theta_0=0$ (а в обратную сторону?). В тесте структуры Неймана для проверки гипотезы для проверки гипотезы
+$H: \theta = \theta_0$ против альтернативы $K: \theta \neq \theta_0$ используются следующие статистики:
+$$
+    U = \sum_{i=1}^n x_i y_i z_i,
+    T_1 = \sum_{i=1}^n x_i y_i,
+    T_2 = \sum_{i=1}^n x_i z_i,
+    T_3 = \sum_{i=1}^n y_i z_i,
+    T_4 = \sum_{i=1}^n x_i,
+    T_5 = \sum_{i=1}^n y_i,
+    T_6 = \sum_{i=1}^n z_i
+$$
+Для построения теста необходимо найти распределение:
+$$
+    P(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)
+$$
+Найдем совместное распределение вектора $(U,T_1,T_2,T_3,T_4,T_5,T_6)$.
+\begin{lemma}
+    $$P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+    $$=M(u) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+        \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+        \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3}\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+        \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n$$
+    где $$M(u)=\frac{n!}{u!(t_1-u)! (t_2-u)! (t_3-u)! (t_4-t_1-t_2+u)! (t_5-t_1-t_3+u)! (t_6 - t_2 - t_3 + u)! (n-u+t_1+t_2+t_3-t_4-t_5-t_6)!}$$
+\end{lemma}
+\begin{proof}
+    $$
+        P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=
+    $$
+    $$
+        =P\biggl[\sum_{i=1}^n x_i y_i z_i=u, \sum_{i=1}^n x_i y_i=t_1, \sum_{i=1}^n x_i z_i=t_2,\sum_{i=1}^n y_i z_i=t_3,
+            \sum_{i=1}^n x_i=t_4,\sum_{i=1}^n y_i=t_5, \sum_{i=1}^n z_i=t_6\biggr]=
+    $$
+    $$
+        =P\biggl[\sum_{i=1}^n x_i y_i z_i=u, \sum_{i=1}^n x_i y_i (1- z_i)=t_1-u, \sum_{i=1}^n x_i (1-y_i) z_i=t_2-u, \sum_{i=1}^n (1-x_i) y_i z_i=t_3-u,
+            $$
+            $$
+            \sum_{i=1}^{n} x_i(1-y_i)(1-z_i)=t_4-t_1-t_2+u, \sum_{i=1}^{n} (1-x_i)y_i(1-z_i)=t_5-t_1-t_3+u,
+            $$
+            $$
+            \sum_{i=1}^{n} (1-x_i)(1-y_i)z_i = t_6 - t_2 - t_3 + u,
+            \sum_{i=1}^n (1-x_i)(1-y_i)(1-z_i)=n-l+t_1+t_2+t_3-t_4-t_5-t_6)\biggr]=
+    $$
+    $$
+        = M(u) p_{111}^u p_{110}^{t_1-u} p_{101}^{t_2-u} p_{011}^{t_3-u}
+        p_{100}^{t_4-t_1-t_2+u} p_{010}^{t_5-t_1-t_3+u} p_{001}^{t_6 - t_2 - t_3 + u}
+        p_{000}^{n-u+t_1+t_2+t_3-t_4-t_5-t_6}
+        =
+    $$
+    $$
+        = M(u) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+        \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+        \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3}\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+        \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n
+    $$
+\end{proof}
+
+\begin{lemma}
+    $$P_{\theta_0}(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=\dfrac{M(u)}{\sum_{s} M(s)}$$
+\end{lemma}
+\begin{proof}
+    $$P(T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+    $$=\sum_{s} M(s) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^s
+        \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+        \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3}\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+        \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n$$
+    $$P(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+    $$=\dfrac{M(u) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+            \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+            \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3}\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+            \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n}{\sum_{s} M(s) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^s
+            \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+            \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3}\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+            \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n}=$$
+    $$=\dfrac{M(u) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u}
+        {\sum_{s} M(s) \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^s}$$
+        $$P_{\theta_0}(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=\dfrac{M(u)}{\sum_{s} M(s)}$$
+\end{proof}
+
 \end{document}
