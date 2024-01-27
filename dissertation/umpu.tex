@@ -1,0 +1,188 @@
+\section{Равномерно наиболее мощный несмещенный тест}
+Пусть
+$$
+    \begin{pmatrix}
+        X_1 \\
+        Y_1 \\
+        Z_1
+    \end{pmatrix},
+    \begin{pmatrix}
+        X_2 \\
+        Y_2 \\
+        Z_2
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        X_n \\
+        Y_n \\
+        Z_n
+    \end{pmatrix}
+$$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$.
+
+Из леммы \ref{factorization} непосредственно следует, что совместное распределение повторной выборки имеет вид:
+$$
+P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+$$
+$$
+=\prod_{i=1}^n P(X_i=x_i,Y_i=y_i,Z_i=z_i) = 
+$$
+$$=\exp \Biggl\{ n \ln p_{000}\Biggr\}
+        \exp \Biggl\{ \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) \sum_{i=1}^n x_i y_i z_i +$$
+    $$ +
+        \ln\left(\dfrac{p_{100}}{p_{000}}\right) \sum_{i=1}^{n} x_i + \ln\left(\dfrac{p_{010}}{p_{000}}\right) \sum_{i=1}^{n} y_i +
+        \ln\left(\dfrac{p_{001}}{p_{000}}\right) \sum_{i=1}^{n} z_i +
+    $$
+    $$
+        +\ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) \sum_{i=1}^n x_i y_i +
+        \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) \sum_{i=1}^n x_i z_i +
+        \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \sum_{i=1}^n y_i z_i \Biggr\}
+    $$
+Сформулируем следующую теорему.
+
+\begin{theorem}
+Пусть $\theta = \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right)$.
+Если выполнено одно из условий:
+\begin{itemize}
+    \item $X \ci Y \mid Z$
+    \item $X \ci Z \mid Y$
+    \item $Y \ci Z \mid X$
+\end{itemize}
+то параметр $\theta$ принимает значение $0$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Пусть $X \ci Y \mid Z$, тогда по теореме \ref{thm1} выполнено:
+        $p_{000}p_{110}=p_{010}p_{100}$ и  $p_{001}p_{111}=p_{011}p_{101}$. Отсюда следует, что
+        $\theta=\ln(1)=0$.
+        \item Пусть $X \ci Z \mid Y$, тогда по теореме \ref{thm1} выполнено:
+        $p_{000}p_{101}=p_{001}p_{100}$ и $p_{010}p_{111}=p_{011}p_{110}$. Отсюда следует, что
+        $\theta=\ln(1)=0$.
+        \item Пусть $Y \ci Z \mid X$, тогда по теореме \ref{thm1} выполнено:
+        $p_{000}p_{011}=p_{001}p_{010}$ и $p_{100}p_{111}=p_{101}p_{110}$. Отсюда следует, что
+        $\theta=\ln(1)=0$.
+    \end{enumerate}
+\end{proof}
+Из вышеприведенной теоремы следует, что интересующее нас значение параметра $\theta$ равно $\theta_0=0$.
+Для проверки гипотезы $H: \theta = \theta_0$ против альтернативы $K: \theta \neq \theta_0$ можно использовать 
+равномерный наиболее мощный в классе несмещенных тест:
+$$
+\varphi(u,t)=\begin{cases}
+    1, \; u<C_1(t) \text{ или } u>C_2(t)\\
+    \gamma_i, \; u=C_i(t), \; i=1,2\\
+    0, \; C_1(t)<u<C_2(t)
+\end{cases}
+$$
+где константы $C_i$ и $\gamma_i$ определяются из системы уравнений:
+$$
+\begin{cases}
+    E_{\theta_0}[\varphi(U,T) \mid T=t]=\alpha \\
+    E_{\theta_0}[U\varphi(U,T) \mid T=t]=\alpha E_{\theta_0}[U \mid T=t]
+\end{cases}
+$$
+а статистиками являются:
+$$
+    U = \sum_{i=1}^n X_i Y_i Z_i,
+    T_1 = \sum_{i=1}^n X_i Y_i,
+    T_2 = \sum_{i=1}^n X_i Z_i,
+    T_3 = \sum_{i=1}^n Y_i Z_i,
+$$
+$$
+    T_4 = \sum_{i=1}^n X_i,
+    T_5 = \sum_{i=1}^n Y_i,
+    T_6 = \sum_{i=1}^n Z_i
+$$
+
+Приведем две технические леммы, для того, чтобы найти условное распределение статистики $U$ при условии $T_1=t_1,\ldots,T_6=t_6$.
+\begin{lemma}
+    $$P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+    $$=\frac{n!}{\prod_{i=1}^8 k_i(u)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+        \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+        \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3} \cdot$$
+    $$
+        \cdot\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+        \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n
+    $$
+    где
+    $k_1(u)=u$, $k_2(u)=t_1-u$, $k_3(u)=t_2-u$, $k_4(u)=t_3-u$, $k_5(u)=t_4-t_1-t_2+u$, $k_6(u)=t_5-t_1-t_3+u$,
+    $k_7(u)=t_6 - t_2 - t_3 + u$, $k_8(u)=n-u+t_1+t_2+t_3-t_4-t_5-t_6$
+\end{lemma}
+\begin{proof}
+    $$
+        P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=
+    $$
+    $$
+        =P\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i=t_1, \sum_{i=1}^n X_i Z_i=t_2,\sum_{i=1}^n Y_i Z_i=t_3,
+        $$
+        $$
+        \sum_{i=1}^n X_i=t_4,\sum_{i=1}^n Y_i=t_5, \sum_{i=1}^n Z_i=t_6\biggr)=
+    $$
+    $$
+        =P\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i (1- Z_i)=t_1-u, \sum_{i=1}^n X_i (1-Y_i) Z_i=t_2-u,
+    $$
+    $$
+        \sum_{i=1}^n (1-X_i) Y_i Z_i=t_3-u,
+        \sum_{i=1}^{n} X_i(1-Y_i)(1-Z_i)=t_4-t_1-t_2+u,
+    $$
+    $$
+        \sum_{i=1}^{n} (1-X_i)Y_i(1-Z_i)=t_5-t_1-t_3+u,
+        \sum_{i=1}^{n} (1-X_i)(1-Y_i)Z_i = t_6 - t_2 - t_3 + u,
+    $$
+    $$
+        \sum_{i=1}^n (1-X_i)(1-Y_i)(1-Z_i)=n-u+t_1+t_2+t_3-t_4-t_5-t_6\biggr)=
+    $$
+    $$
+        = \frac{n!}{\prod_{i=1}^8 k_i(u)!} p_{111}^u p_{110}^{t_1-u} p_{101}^{t_2-u} p_{011}^{t_3-u}
+        p_{100}^{t_4-t_1-t_2+u} p_{010}^{t_5-t_1-t_3+u} p_{001}^{t_6 - t_2 - t_3 + u} \cdot
+    $$
+    $$
+        \cdot p_{000}^{n-u+t_1+t_2+t_3-t_4-t_5-t_6}
+        =
+    $$
+    $$=\frac{n!}{\prod_{i=1}^8 k_i(u)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+        \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+        \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3} \cdot$$
+    $$
+        \cdot\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+        \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n
+    $$
+\end{proof}
+
+\begin{lemma}\label{u_dist}
+    $$P_{\theta_0}(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=\dfrac{\frac{1}{\prod_{i=1}^8 k_i(u)!}}
+        {\sum_{s} \frac{1}{\prod_{i=1}^8 k_i(s)!}}$$
+    где в знаменателе вышеприведенной формулы суммирование ведется по таким $s$, что $0\leq k_i(s) \leq n$ для всех $i=1\ldots,8$.
+\end{lemma}
+\begin{proof}
+    Найдем маргинальное распределение вектора $(T_1,\ldots,T_6)^T$:
+    $$P(T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+    $$=\sum_{s} P(U=s, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)$$
+    Тогда условное распределение статистики $U$ при условии $T_1=t_1,\ldots,T_6=t_6$ можно записать в виде:
+    $$P(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+    $$=\dfrac{\frac{n!}{\prod_{i=1}^8 k_i(u)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u}
+        {\sum_{s} \frac{n!}{\prod_{i=1}^8 k_i(s)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^s}$$
+    При истинности гипотезы $\theta=\theta_0=0$ параметр $\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}=1$.
+    $$P_{\theta_0}(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=\dfrac{\frac{1}{\prod_{i=1}^8 k_i(u)!}}
+        {\sum_{s} \frac{1}{\prod_{i=1}^8 k_i(s)!}}$$
+\end{proof}
+
+Условную вероятность из леммы \ref{u_dist} можно эффективно вычислить на ЭВМ.
+Пусть $f(i)=\sum_{j=1}^{i} \ln(j)$. Тогда значение условной вероятности можно переписать в виде:
+$$
+\dfrac{\frac{1}{\prod_{i=1}^8 k_i(u)!}}{\sum_{s} \frac{1}{\prod_{i=1}^8 k_i(s)!}}=
+\dfrac{\exp \biggl\{ \ln \biggl( \frac{1}{\prod_{i=1}^8 k_i(u)!} \biggr) \biggr\}}
+{\sum_{s} \exp \biggl\{ \ln \biggl( \frac{1}{\prod_{i=1}^8 k_i(s)!} \biggr) \biggr\}}
+= \dfrac{\exp \biggl\{ -\sum_{i=1}^8 \ln(k_i(u)!) \biggr\}}{\sum_{s} \exp \biggl\{ -\sum_{i=1}^8 \ln(k_i(s)!) \biggr\}} =
+$$
+$$
+= \dfrac{\exp \biggl\{ -\sum_{i=1}^8 f(k_i(u)) \biggr\}}{\sum_{s} \exp \biggl\{ -\sum_{i=1}^8 f(k_i(s)) \biggr\}}
+$$
+Полученное выражение удобно с позиции того, что современные ЭВМ умеют вычислять функцию
+$$
+\varphi(x,i)=\dfrac{\exp\{x_i\}}{\sum_{j=1}^{n} \exp\{x_j\}}, \; x=(x_1,\ldots,x_n)
+$$
+За счет свойства
+$$
+\varphi(x,i)=\dfrac{\exp\{x_i\}}{\sum_{j=1}^{n} \exp\{x_j\}} = \dfrac{\exp\{x_i - C\}}{\sum_{j=1}^{n} \exp\{x_j - C\}}
+, \text{ где } C=\max_{1\leq j \leq n} x_j
+$$
+удается избежать переполнения вещественного типа данных, связанного с экспонентой.

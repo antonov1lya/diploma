@@ -1,0 +1,64 @@
+\section{Трехмерное распределение Бернулли в экспоненциальном виде}
+Пусть $(X,Y,Z)^T$ -- случайный вектор, имеющий трехмерное распределение Бернулли.
+Распределение данного случайного вектора можно записать в экспоненциальной форме:
+$$P(X=x,Y=y,Z=z)=p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z}$$
+
+\begin{lemma}\label{factorization}
+    $$
+    P(X=x,Y=y,Z=z)= \exp \Biggl\{ \ln p_{000} \Biggr\}
+        \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
+    $$ +
+        x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
+        z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
+    $$
+    $$
+        + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
+        xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
+        yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
+    $$
+\end{lemma}
+
+\begin{proof}
+    $$
+    P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
+    $$
+    $$
+        =\exp \Biggl\{ (1-x)(1-y)(1-z) \ln p_{000} +
+        (1-x)(1-y)z \ln p_{001}+
+    $$
+    $$
+        + (1-x)y(1-z) \ln p_{010} + (1-x)y z \ln p_{011} +  x(1-y)(1-z) \ln p_{100} +
+    $$
+    $$
+        +   x(1-y) z \ln p_{101}
+        +   x y (1-z) \ln p_{110} +   x y z \ln p_{111} \Biggr\} =
+    $$
+    $$
+        =\exp \Biggl\{   ( 1 - y -  x +  x y
+        -  z +  y z +  x z -  x y z ) \ln p_{000} +
+    $$
+    $$
+        +    (z -  y z -  x z +  x y z) \ln p_{001}  +
+          (y -  y z -  x y +  x y z)  \ln p_{010} +
+    $$
+    $$
+        +    (y z -  x y z ) \ln p_{011} +
+           (x -  x z -  x y +  x y z ) \ln p_{100} +
+    $$
+    $$
+        +   (x z -  x y z ) \ln p_{101} +   (x y -  x y z) \ln p_{110} +
+          x y z \ln p_{111} \Biggr\}=
+    $$
+    $$
+        = \exp \Biggl\{ \ln p_{000} \Biggr\}
+        \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
+    $$ +
+        x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
+        z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
+    $$
+    $$
+        + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
+        xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
+        yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
+    $$
+\end{proof}

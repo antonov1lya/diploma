@@ -1,0 +1,39 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage{graphicx}
+
+% \usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+\usepackage[russian]{babel}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{example}{Пример}[section]
+\newtheorem{lemma}{Лемма}[section]
+
+\def\ci{\perp\!\!\!\perp}
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{pdfstartview={XYZ null null 1.00}}
+
+\begin{document}
+
+% \let\clearpage\relax
+\include{bernoulli}
+\include{exponential_form}
+\include{umpu}
+\include{gaussian}
+
+% % библиография
+% \nocite{*}
+% \newpage
+% \bibliographystyle{plain}
+% \bibliography{refs}
+% \addcontentsline{toc}{section}{Список использованной литературы}
+
+\end{document}

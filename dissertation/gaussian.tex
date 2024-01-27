@@ -1,0 +1,93 @@
+\section{Тест проверки условной независимости в трехмерном нормальном распределении}
+Пусть
+$$
+\begin{pmatrix}
+    X_1\\
+    Y_1 \\
+    Z_1
+\end{pmatrix}, \begin{pmatrix}
+    X_2\\
+    Y_2 \\
+    Z_2
+\end{pmatrix}, \ldots, 
+\begin{pmatrix}
+    X_n \\
+    Y_n \\
+    Z_n
+\end{pmatrix}
+$$
+повторная выборка из распределения $(X,Y,Z)^T$ с трехмерным нормальным распределением $\mathcal{N}(\mu, \Sigma)$,
+где $\mu$ -- вектор математических ожиданий, а $\Sigma$ -- ковариационная матрица:
+$$
+\mu = \begin{pmatrix}
+    EX \\ EY \\ EZ
+\end{pmatrix}, 
+\;
+\Sigma = \begin{pmatrix}
+    \sigma_{XX} & \sigma_{XY} & \sigma_{XZ} \\
+    \sigma_{YX} & \sigma_{YY} & \sigma_{YZ} \\
+    \sigma_{ZX} & \sigma_{ZY} & \sigma_{ZZ} 
+\end{pmatrix}
+$$
+а также $\sigma_{XY}=E[(X-EX)(Y-EY)]$.
+Для матрицы $\Sigma$ элементы обратной матрицы $\Sigma^{-1}$ будем обозначать:
+$$
+\Sigma^{-1} =
+\begin{pmatrix}
+    \sigma^{XX} & \sigma^{XY} & \sigma^{XZ} \\
+    \sigma^{YX} & \sigma^{YY} & \sigma^{YZ} \\
+    \sigma^{ZX} & \sigma^{ZY} & \sigma^{ZZ} 
+\end{pmatrix}
+$$
+
+\begin{definition}
+    В трехмерном нормальном распределении частным коэффициентом корреляции Пирсона называется:
+    $$
+    \rho^{XY\cdot Z} = \dfrac{\sigma^{XY}}{\sqrt{\sigma^{XX} \sigma^{YY}}}
+    $$
+\end{definition}
+Известно, что в трехмерном нормальном распределении частный коэффициент корреляции совпадает с условным коэффициентом корреляции 
+и выполнено:
+$$
+X \ci Y \mid Z \text{ тогда и только тогда, когда } \rho^{XY\cdot Z}=0
+$$
+\begin{definition}
+    Выборочной ковариационной матрицей называется матрица $S$, такая что:
+    $$S= 
+    \begin{pmatrix}
+        s_{XX} & s_{XY} & s_{XZ}\\
+        s_{YX} & s_{YY} & s_{YZ}\\
+        s_{ZX} & s_{ZY} & s_{ZZ}
+    \end{pmatrix}
+    $$
+    где $$
+    s_{XY} = \dfrac{1}{n-1} \sum_{i=1}^{n} (X_i-\overline{X})(Y_i - \overline{Y}), \; \overline{X} = \dfrac{1}{n} \sum_{i=1}^{n} X_i
+    $$
+\end{definition}
+Для матрицы $S$ элементы обратной матрицы $S^{-1}$ будем обозначать:
+$$
+S^{-1}=\begin{pmatrix}
+    s^{XX} & s^{XY} & s^{XZ}\\
+    s^{YX} & s^{YY} & s^{YZ}\\
+    s^{ZX} & s^{ZY} & s^{ZZ}
+\end{pmatrix}
+$$
+\begin{definition}
+    Выборочным частным коэффициентом корреляции Пирсона называется:
+    $$r^{XY\cdot Z}=\dfrac{s^{XY}}{\sqrt{s^{XX} s^{YY}}}$$
+\end{definition}
+
+Известно, что при истинности гипотезы $\rho^{XY \cdot Z}=0$ статистика
+$$
+T=\sqrt{n-3} \dfrac{r^{XY \cdot Z}}{\sqrt{1-(r^{XY \cdot Z})^2}}
+$$
+имеет распределение Стьюдента с $n-3$ степенями свободы.
+Тогда тест уровня $\alpha$ проверки гипотезы $H: \rho^{XY\cdot Z}=0$ против альтернативы $K: \rho^{XY\cdot Z} \neq 0$ имеет вид:
+$$
+\varphi(t) = \begin{cases}
+    1, \; t<C_1 \text{ или } t>C_2 \\ 
+    0, \; C_1 \leq t \leq C_2
+\end{cases}
+$$
+где константы $C_1$ и $C_2$, удовлетворяющие уравнениям $P(T<C_1)~=~\alpha/2$ и $P(T>C_2)=1-\alpha/2$,
+берутся из таблиц квантилей распределения Стьюдента с $n-3$ степенями свободы.
