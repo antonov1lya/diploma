@@ -2,6 +2,8 @@
 \usepackage{graphicx}
 
 % \usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+\usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm]{geometry}
+\linespread{1.25} 
 
 \usepackage[russian]{babel}
 
@@ -23,11 +25,18 @@
 
 \begin{document}
 
-% \let\clearpage\relax
-\include{bernoulli}
-\include{exponential_form}
-\include{umpu}
-\include{gaussian}
+% титульник
+\input{title}
+\newpage
+
+% содержание
+\tableofcontents
+\newpage
+
+\input{bernoulli}
+\input{exponential_form}
+\input{umpu}
+\input{gaussian}
 
 % % библиография
 % \nocite{*}
@@ -35,5 +44,6 @@
 % \bibliographystyle{plain}
 % \bibliography{refs}
 % \addcontentsline{toc}{section}{Список использованной литературы}
+
 
 \end{document}

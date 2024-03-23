@@ -16,7 +16,7 @@ $$
     Z_n
 \end{pmatrix}
 $$
-повторная выборка из распределения $(X,Y,Z)^T$ с трехмерным нормальным распределением $\mathcal{N}(\mu, \Sigma)$,
+повторная выборка из распределения $(X,Y,Z)^T$ с трехмерным нормальным распределением $N(\mu, \Sigma)$,
 где $\mu$ -- вектор математических ожиданий, а $\Sigma$ -- ковариационная матрица:
 $$
 \mu = \begin{pmatrix}
@@ -29,21 +29,11 @@ $$
     \sigma_{ZX} & \sigma_{ZY} & \sigma_{ZZ} 
 \end{pmatrix}
 $$
-а также $\sigma_{XY}=E[(X-EX)(Y-EY)]$.
-Для матрицы $\Sigma$ элементы обратной матрицы $\Sigma^{-1}$ будем обозначать:
-$$
-\Sigma^{-1} =
-\begin{pmatrix}
-    \sigma^{XX} & \sigma^{XY} & \sigma^{XZ} \\
-    \sigma^{YX} & \sigma^{YY} & \sigma^{YZ} \\
-    \sigma^{ZX} & \sigma^{ZY} & \sigma^{ZZ} 
-\end{pmatrix}
-$$
-
+а также $\sigma_{XY}=E((X-EX)(Y-EY))$.
 \begin{definition}
     В трехмерном нормальном распределении частным коэффициентом корреляции Пирсона называется:
     $$
-    \rho^{XY\cdot Z} = \dfrac{\sigma^{XY}}{\sqrt{\sigma^{XX} \sigma^{YY}}}
+    \rho^{XY\cdot Z} = \dfrac{\rho_{XY}-\rho_{XZ}\rho_{YZ}}{\sqrt{1-\rho_{XY}^2}\sqrt{1-\rho_{YZ}^2}}
     $$
 \end{definition}
 Известно, что в трехмерном нормальном распределении частный коэффициент корреляции совпадает с условным коэффициентом корреляции 
@@ -51,30 +41,24 @@ $$
 $$
 X \ci Y \mid Z \text{ тогда и только тогда, когда } \rho^{XY\cdot Z}=0
 $$
+
 \begin{definition}
-    Выборочной ковариационной матрицей называется матрица $S$, такая что:
-    $$S= 
-    \begin{pmatrix}
-        s_{XX} & s_{XY} & s_{XZ}\\
-        s_{YX} & s_{YY} & s_{YZ}\\
-        s_{ZX} & s_{ZY} & s_{ZZ}
-    \end{pmatrix}
+    Выборочным коэффициентом корреляции Пирсона называется:
     $$
-    где $$
-    s_{XY} = \dfrac{1}{n-1} \sum_{i=1}^{n} (X_i-\overline{X})(Y_i - \overline{Y}), \; \overline{X} = \dfrac{1}{n} \sum_{i=1}^{n} X_i
+    r_{XY}=\dfrac{\sum_{i=1}^{n} (X_i-\overline{X})(Y_i - \overline{Y})}{
+        \sqrt{\sum_{i=1}^{n} (X_i-\overline{X})^2}
+        \sqrt{\sum_{i=1}^{n} (Y_i-\overline{Y})^2}
+    }
+    $$
+    где
+    $$
+    \overline{X} = \dfrac{1}{n} \sum_{i=1}^{n} X_i
     $$
 \end{definition}
-Для матрицы $S$ элементы обратной матрицы $S^{-1}$ будем обозначать:
-$$
-S^{-1}=\begin{pmatrix}
-    s^{XX} & s^{XY} & s^{XZ}\\
-    s^{YX} & s^{YY} & s^{YZ}\\
-    s^{ZX} & s^{ZY} & s^{ZZ}
-\end{pmatrix}
-$$
+
 \begin{definition}
     Выборочным частным коэффициентом корреляции Пирсона называется:
-    $$r^{XY\cdot Z}=\dfrac{s^{XY}}{\sqrt{s^{XX} s^{YY}}}$$
+    $$r^{XY\cdot Z}=\dfrac{r_{XY}-r_{XZ}r_{YZ}}{\sqrt{1-r_{XY}^2}\sqrt{1-r_{YZ}^2}}$$
 \end{definition}
 
 Известно, что при истинности гипотезы $\rho^{XY \cdot Z}=0$ статистика
