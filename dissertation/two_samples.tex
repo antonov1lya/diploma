@@ -1,0 +1,33 @@
+\section{Тест по подвыборкам}
+
+\begin{lemma}
+    $$
+    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid Z_1=z_1,\ldots,Z_n=z_n)=
+    $$
+    $$
+    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_1=z_1,\ldots,Z_n=z_n)
+    $$
+\end{lemma}
+\begin{proof}
+    С одной стороны:
+    $$
+    P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+    $$
+    $$
+    =P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid Z_1=z_1,\ldots,Z_n=z_n) \cdot
+    $$
+    $$
+    \cdot P(Z_1=z_1,\ldots,Z_n=z_n)
+    $$
+    С другой стороны:
+    $$
+    P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+    $$
+    $$
+    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_i=z_i)P(Z_i=z_i)=
+    $$
+    $$
+    =P(Z_1=z_1,\ldots,Z_n=z_n)\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_1=z_1,\ldots,Z_n=z_n)
+    $$
+
+\end{proof}

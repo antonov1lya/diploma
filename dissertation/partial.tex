@@ -1,55 +1,80 @@
-\section{Частный коэффициент корреляции Пирсона}
-Для удобства введем следующие обозначения: $$p_{x**}=P(X=x), \; p_{*y*}=P(Y=y), \; p_{**z}=P(Z=z)$$
-$$p_{xy*}=P(X=x, Y=y), \; p_{x*z}=P(X=x, Z=z), \; p_{*yz}=P(Y=y, Z=z)$$
-Символом $\Sigma$ будем обозначать ковариационную матрицу:
+Пусть $(X,Y,Z)^T$ -- случайный вектор с трехмерным распределение Бернулли,
+$\Sigma$ -- ковариационная матрица:
 $$\Sigma =
     \begin{pmatrix}
-        \sigma_{11} & \sigma_{12} & \sigma_{13} \\
-        \sigma_{21} & \sigma_{22} & \sigma_{23} \\
-        \sigma_{31} & \sigma_{32} & \sigma_{33}
+        \sigma_{XX} & \sigma_{XY} & \sigma_{XZ} \\
+        \sigma_{YX} & \sigma_{YY} & \sigma_{YZ} \\
+        \sigma_{ZX} & \sigma_{ZY} & \sigma_{ZZ}
     \end{pmatrix}
 $$
-Легко проверить, что $\sigma_{11}=D(X) = p_{1**}(1-p_{1**})$.
+Остатками от $X$ и $Y$ при регрессии на $Z$ будем называть случайные величины:
+$$
+X^{\prime}=(X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ)
+$$
+$$
+Y^{\prime}=(Y-EY)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-EZ)
+$$
+Согласно работе Крамера, частным коэффициентом корреляции Пирсона называется:
+$$
+\rho^{XY \cdot Z}=\dfrac{E(X^{\prime} Y^{\prime})}{\sqrt{E(X^{\prime})^2 E(Y^{\prime})^2}}
+$$
+Докажем следующую лемму:
+\begin{lemma}
+    $$E(X^\prime Y^\prime)=\sigma_{XY}-\dfrac{\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}$$
+\end{lemma}
+\begin{proof}
+    $$E(X^\prime Y^\prime)=E[((X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ))((Y-EY)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-EZ))]=$$
+    $$=\sigma_{XY}-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}\sigma_{XZ}-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}\sigma_{YZ}+
+    \dfrac{\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}\sigma_{ZZ}}\sigma_{ZZ}=\sigma_{XY}-\dfrac{\sigma_{XZ} \sigma_{YZ}}{ \sigma_{ZZ}}$$
+\end{proof}
+
+Приведем выражение для частного коэффицинта корреляции Пирсона:
+\begin{lemma}
+    $$
+    \rho^{XY \cdot Z}=\dfrac{\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}}{\sqrt{\sigma_{XX}\sigma_{ZZ}-
+    \sigma_{XZ}^2}\sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}}
+    $$
+\end{lemma}
+\begin{proof}
+    $$E(X^\prime Y^\prime)=\sigma_{XY}-\dfrac{\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}=
+    \dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}$$
+    $$
+    \rho^{XY \cdot Z}=\dfrac{\dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}}
+    {\sqrt{
+        \dfrac{\sigma_{XX}\sigma_{ZZ}-\sigma_{XZ}\sigma_{XZ}}{\sigma_{ZZ}}
+    }\sqrt{
+        \dfrac{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}\sigma_{YZ}}{\sigma_{ZZ}}
+    }}=
+    $$
+    $$
+    =\dfrac{\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}}{\sqrt{\sigma_{XX}\sigma_{ZZ}-
+    \sigma_{XZ}^2}\sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}}
+    $$
+\end{proof}
+
+Для удобства в дальнейших выкладках введем следующие обозначения: $$p_{x**}=P(X=x), \; p_{*y*}=P(Y=y), \; p_{**z}=P(Z=z)$$
+$$p_{xy*}=P(X=x, Y=y), \; p_{x*z}=P(X=x, Z=z), \; p_{*yz}=P(Y=y, Z=z)$$
+Легко проверить, что $\sigma_{XX}= p_{1**}(1-p_{1**})$.
 
 \begin{lemma}
-    $$\sigma_{12}=\text{Cov}(X,Y)=p_{11*}-p_{1**}p_{*1*}$$
+    $$\sigma_{XY}=p_{11*}-p_{1**}p_{*1*}$$
 \end{lemma}
 
 \begin{proof}
-    Воспользуемся формулой $\text{Cov}(X,Y)=E(X Y)-$ $-E(X)E(Y)$.
+    Воспользуемся формулой $\sigma_{XY}=\text{Cov}(X,Y)=E(X Y)-$ $-E(X)E(Y)$.
     $$E(X Y) = 1 \cdot p_{11*} + 0 \cdot (p_{00*} + p_{01*} + p_{10*})=p_{11*}$$
     $$EX = 1 \cdot p_{1**} + 0 \cdot p_{0**}=p_{1**}$$
     $$ EY = 1 \cdot p_{*1*} + 0 \cdot p_{*0*} = p_{*1*}$$
     Таким образом, $\text{Cov}(X,Y)=p_{11*}-p_{1**}p_{*1*}$.
 \end{proof}
 
-Частный коэффициент корреляции Пирсона определяется через элементы обратной ковариационной матрицы $\Sigma^{-1}$:
-$$
-    \Sigma^{-1}=\begin{pmatrix}
-        \sigma^{11} & \sigma^{12} & \sigma^{13} \\
-        \sigma^{21} & \sigma^{22} & \sigma^{23} \\
-        \sigma^{31} & \sigma^{32} & \sigma^{33}
-    \end{pmatrix}
-$$
-Известно, что элемент $\sigma^{12}$ матрицы $\Sigma^{-1}$ выражается через соотношение
-$\sigma^{12}=\dfrac{(-1)^{2+1}}{\text{det} (\Sigma)}M_{21}$, где
-$
-    M_{21}=\text{det}
-    \begin{pmatrix}
-        \sigma_{12} & \sigma_{13} \\
-        \sigma_{32} & \sigma_{33}
-    \end{pmatrix}
-$.
+Докажем лемму касательно выражения, фигурирующего в числителе частного коэффициента корреляции Пирсона.
 
 \begin{lemma}\label{partial_cov}
-    $$M_{21} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})$$
+    $$\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})$$
 \end{lemma}
 \begin{proof}
-    $$ M_{21}= \text{det}
-        \begin{pmatrix}
-            \sigma_{12} & \sigma_{13} \\
-            \sigma_{23} & \sigma_{33}
-        \end{pmatrix}
+    $$ \sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}
         = (p_{11*}-p_{1**}p_{*1*}) p_{**1}(1-p_{**1})-
     $$
     $$
@@ -61,7 +86,7 @@ $.
     $$
         -p_{1*1}p_{*11}+p_{1*1}p_{*1*}p_{**1}+p_{1**}p_{**1}p_{*11}-p_{1**}p_{**1}p_{*1*}p_{**1}=
     $$
-    Заметим, что четвертое и восьмое слагаемые сокращаются. Распишем первое слагаемое как сумму вероятностей:
+    Заметим, что четвертое и восьмое слагаемые сокращаются. Распишем первое слагаемое как сумму вероятностей по компоненте $z$:
     $$
         =p_{111}p_{**1}+p_{110}p_{**1} - p_{11*}p_{**1}p_{**1} - p_{1**}p_{*1*}p_{**1} -
     $$
@@ -96,9 +121,12 @@ $.
     $$
         =-p_{1*0}p_{*10}+p_{1*1}p_{*11}
     $$
-    Запишем выражение для $M_{21}$ с преобразованными слагаемыми:
+    Запишем выражение для $\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}$ с преобразованными слагаемыми:
     $$
-        M_{21}=(p_{111}p_{**1}-p_{1*1}p_{*11})+p_{**1}((p_{110}p_{**0}-p_{1*0}p_{*10})-(p_{111}p_{**1}-p_{1*1}p_{*11}))=
+    \sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}=
+    $$
+    $$
+    =(p_{111}p_{**1}-p_{1*1}p_{*11})+p_{**1}((p_{110}p_{**0}-p_{1*0}p_{*10})-(p_{111}p_{**1}-p_{1*1}p_{*11}))=
     $$
     $$
         =(p_{111}p_{**1}-p_{1*1}p_{*11})+p_{**1}(p_{110}p_{**0}-p_{1*0}p_{*10})-p_{**1}(p_{111}p_{**1}-p_{1*1}p_{*11})=
@@ -135,21 +163,21 @@ $.
     $$
     Таким образом:
     $$
-        M_{21} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})
+    \sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})
     $$
 \end{proof}
 \begin{theorem}\label{1.2}
-    Пусть $X$ и $Y$ условно независимы при условии $Z$. Тогда $\sigma^{12}=0$.
+    Пусть $X$ и $Y$ условно независимы при условии $Z$. Тогда $\rho^{XY \cdot Z}=0$.
 \end{theorem}
 \begin{proof}
     Пусть $X$ и $Y$ условно независимы при условии $Z$. Тогда по теореме \ref{thm1}:
     $$p_{000}p_{110}=p_{010}p_{100}$$
     $$p_{001}p_{111}=p_{011}p_{101}$$
-    Используя вышеприведенные соотношения, имеем:
+    Используя вышеприведенные соотношения в числителе частного коэффициента корреляции Пирсона имеем:
     $$
-        M_{21} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})= 0
+        p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})= 0
     $$
-    Из $M_{21}=0$ непосредственно следует, что $\sigma^{12}=0$.
+    Следовательно, $\rho^{XY \cdot Z}=0$.
 \end{proof}
 В обратную сторону теорема \ref{1.2} неверна. Легко построить контрпример при $p_{**0}=0$. Далее покажем контрпример в невырожденном случае.
 \begin{example}
@@ -166,3 +194,99 @@ $.
         p_{001}p_{111}-p_{011}p_{101}=0.1 \cdot 0.1 - 0.15 \cdot 0.15 = -0.0125 \neq 0
     $$
 \end{example}
+
+Приведем альтернативные формулы, с помощью которых удобно вычислять частный коэффициент корреляции Пирсона.
+
+\begin{definition}
+    Коэффициентом корреляции Пирсона называется:
+    $$
+    \rho_{XY}=\dfrac{\sigma_{XY}}{\sqrt{\sigma_{XX}\sigma_{YY}}}
+    $$
+\end{definition}
+
+\begin{lemma}
+    $$
+    \rho^{XY \cdot Z}=\dfrac{\rho_{XY}-\rho_{XZ}\rho_{YZ}}{\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{YZ}^2}}
+    $$
+\end{lemma}
+\begin{proof}
+    $$
+    \rho^{XY \cdot Z}=\dfrac{\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}}{\sqrt{\sigma_{XX}\sigma_{ZZ}-
+    \sigma_{XZ}^2}\sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}}
+    $$
+    $$
+    =\dfrac{\sigma_{ZZ}\sqrt{\sigma_{XX}\sigma_{YY}}
+    \left(\dfrac{\sigma_{XY}}{\sqrt{\sigma_{XX}\sigma_{YY}}} 
+    - \dfrac{\sigma_{XZ}}{\sqrt{\sigma_{XX}\sigma_{ZZ}}} \dfrac{\sigma_{YZ}}{\sqrt{\sigma_{YY}\sigma_{ZZ}}}\right)}
+    {\sqrt{\sigma_{XX}\sigma_{ZZ}-
+    \sigma_{XZ}^2}\sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}}=
+    $$
+    $$
+    =\dfrac{\rho_{XY}-\rho_{XZ}\rho_{YZ}}{\sqrt{1-\dfrac{\sigma_{XZ}^2}{\sigma_{XX}\sigma_{ZZ}}}
+    \sqrt{1-\dfrac{\sigma_{YZ}^2}{\sigma_{YY}\sigma_{ZZ}}}}
+    =\dfrac{\rho_{XY}-\rho_{XZ}\rho_{YZ}}{\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{YZ}^2}}
+    $$
+\end{proof}
+
+\begin{lemma}
+    Пусть $\Sigma$ -- ковариационная матрица с элементами
+    $$\Sigma =
+    \begin{pmatrix}
+        \sigma_{XX} & \sigma_{XY} & \sigma_{XZ} \\
+        \sigma_{YX} & \sigma_{YY} & \sigma_{YZ} \\
+        \sigma_{ZX} & \sigma_{ZY} & \sigma_{ZZ}
+    \end{pmatrix}
+    $$
+    а $\Sigma^{-1}$ обратная ковариационная матрица с элементами
+    $$\Sigma^{-1} =
+    \begin{pmatrix}
+        \sigma^{XX} & \sigma^{XY} & \sigma^{XZ} \\
+        \sigma^{YX} & \sigma^{YY} & \sigma^{YZ} \\
+        \sigma^{ZX} & \sigma^{ZY} & \sigma^{ZZ}
+    \end{pmatrix}
+    $$
+    Тогда для частного коэффициента корреляции справедливо:
+    $$
+    \rho^{XY \cdot Z}=-\dfrac{\sigma^{XY}}{\sqrt{\sigma^{XX}\sigma^{YY}}}
+    $$
+\end{lemma}
+\begin{proof}
+    Воспользуемся следующими соотношениями для элементов обратной матрицы:
+    $$
+    \sigma^{XY}=\dfrac{-1}{det(\Sigma)}\begin{vmatrix}
+    \sigma_{XY} & \sigma_{XZ}\\
+    \sigma_{YZ} & \sigma_{ZZ}
+    \end{vmatrix}=\dfrac{-(\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ})}{det(\Sigma)}
+    $$
+
+    $$
+    \sigma^{XX}=\dfrac{1}{det(\Sigma)}\begin{vmatrix}
+    \sigma_{YY} & \sigma_{YZ}\\
+    \sigma_{YZ} & \sigma_{ZZ}
+    \end{vmatrix}
+    = \dfrac{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}{det(\Sigma)}
+    $$
+
+    $$
+    \sigma^{YY}=\dfrac{1}{det(\Sigma)}\begin{vmatrix}
+    \sigma_{XX} & \sigma_{XZ}\\
+    \sigma_{XZ} & \sigma_{ZZ}
+    \end{vmatrix}
+    = \dfrac{\sigma_{XX}\sigma_{ZZ}-\sigma_{XZ}^2}{det(\Sigma)}
+    $$
+    Тогда:
+    $$
+    -\dfrac{\sigma^{XY}}{\sqrt{\sigma^{XX}\sigma^{YY}}}=-\dfrac{
+        \dfrac{-(\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ})}{det(\Sigma)}
+    }{
+        \sqrt{\dfrac{\sigma_{XX}\sigma_{ZZ}-\sigma_{XZ}^2}{det(\Sigma)}}
+        \sqrt{\dfrac{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}{det(\Sigma)}}
+    }=
+    $$
+    $$
+    = \dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{
+        \sqrt{\sigma_{XX}\sigma_{ZZ}-\sigma_{XZ}^2}
+        \sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}
+    }=\rho^{XY \cdot Z}
+    $$
+\end{proof}

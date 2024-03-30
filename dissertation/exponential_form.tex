@@ -1,69 +1,69 @@
-Трехмерное распределение Бернулли можно представить в экспоненциальном виде:
-$$P(X=x,Y=y,Z=z)=p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z}$$
+% Трехмерное распределение Бернулли можно записать с помощью следующего выражения:
+% \begin{equation}\label{expon}
+%     P(X=x,Y=y,Z=z)=p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z}
+% \end{equation}
+% Покажем, что трехмерное распределение Бернулли принадлежит к многопараметрическому экспоненциальному семейству \cite{Lehmann1986}.
+% \begin{lemma}\label{factorization}
+%     $$
+%     P(X=x,Y=y,Z=z)= p_{000}
+%         \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
+%     $$ +
+%         x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
+%         z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
+%     $$
+%     $$
+%         + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
+%         xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
+%         yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
+%     $$
+% \end{lemma}
 
-Докажем лемму касательно вида $P(X=x,Y=y,Z=z)$.
+% \begin{proof}
+%     $$
+%     P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
+%     $$
+%     $$
+%         =\exp \Biggl\{ (1-x)(1-y)(1-z) \ln p_{000} +
+%         (1-x)(1-y)z \ln p_{001}+
+%     $$
+%     $$
+%         + (1-x)y(1-z) \ln p_{010} + (1-x)y z \ln p_{011} +  x(1-y)(1-z) \ln p_{100} +
+%     $$
+%     $$
+%         +   x(1-y) z \ln p_{101}
+%         +   x y (1-z) \ln p_{110} +   x y z \ln p_{111} \Biggr\} =
+%     $$
+%     $$
+%         =\exp \Biggl\{   ( 1 - y -  x +  x y
+%         -  z +  y z +  x z -  x y z ) \ln p_{000} +
+%     $$
+%     $$
+%         +    (z -  y z -  x z +  x y z) \ln p_{001}  +
+%           (y -  y z -  x y +  x y z)  \ln p_{010} +
+%     $$
+%     $$
+%         +    (y z -  x y z ) \ln p_{011} +
+%            (x -  x z -  x y +  x y z ) \ln p_{100} +
+%     $$
+%     $$
+%         +   (x z -  x y z ) \ln p_{101} +   (x y -  x y z) \ln p_{110} +
+%           x y z \ln p_{111} \Biggr\}=
+%     $$
+%     $$
+%         = \exp \Biggl\{ \ln p_{000} \Biggr\}
+%         \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
+%     $$ +
+%         x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
+%         z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
+%     $$
+%     $$
+%         + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
+%         xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
+%         yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
+%     $$
+% \end{proof}
 
-\begin{lemma}\label{factorization}
-    $$
-    P(X=x,Y=y,Z=z)= \exp \Biggl\{ \ln p_{000} \Biggr\}
-        \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
-    $$ +
-        x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
-        z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
-    $$
-    $$
-        + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
-        xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
-        yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
-    $$
-\end{lemma}
-
-\begin{proof}
-    $$
-    P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
-    $$
-    $$
-        =\exp \Biggl\{ (1-x)(1-y)(1-z) \ln p_{000} +
-        (1-x)(1-y)z \ln p_{001}+
-    $$
-    $$
-        + (1-x)y(1-z) \ln p_{010} + (1-x)y z \ln p_{011} +  x(1-y)(1-z) \ln p_{100} +
-    $$
-    $$
-        +   x(1-y) z \ln p_{101}
-        +   x y (1-z) \ln p_{110} +   x y z \ln p_{111} \Biggr\} =
-    $$
-    $$
-        =\exp \Biggl\{   ( 1 - y -  x +  x y
-        -  z +  y z +  x z -  x y z ) \ln p_{000} +
-    $$
-    $$
-        +    (z -  y z -  x z +  x y z) \ln p_{001}  +
-          (y -  y z -  x y +  x y z)  \ln p_{010} +
-    $$
-    $$
-        +    (y z -  x y z ) \ln p_{011} +
-           (x -  x z -  x y +  x y z ) \ln p_{100} +
-    $$
-    $$
-        +   (x z -  x y z ) \ln p_{101} +   (x y -  x y z) \ln p_{110} +
-          x y z \ln p_{111} \Biggr\}=
-    $$
-    $$
-        = \exp \Biggl\{ \ln p_{000} \Biggr\}
-        \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
-    $$ +
-        x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
-        z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
-    $$
-    $$
-        + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
-        xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
-        yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
-    $$
-\end{proof}
-
-Сформулируем теорему касательно параметра трехмерного распределения Бернулли, связанного с условной независимостью.
+\subsection{Связь параметров в экспоненциальной форме записи трехмерного распределения Бернулли с условной независимостью}
 
 \begin{theorem}
     Пусть $\theta = \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right)$.
