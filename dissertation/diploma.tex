@@ -1,8 +1,8 @@
-\documentclass[a4paper,12pt]{extarticle}
+\documentclass[a4paper,14pt]{extarticle}
 \usepackage{graphicx}
 
-% \usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
-\usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm]{geometry}
+\usepackage[left=30mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+% \usepackage[left=25mm, right=15mm, top=15mm, bottom=15mm]{geometry}
 \linespread{1.25} 
 
 \usepackage[russian]{babel}
@@ -18,7 +18,6 @@
 \newtheorem{lemma}{Лемма}[section]
 
 \def\ci{\perp\!\!\!\perp}
-\usepackage{xcolor}
 
 \usepackage{hyperref}
 \hypersetup{pdfstartview={XYZ null null 1.00}}
@@ -33,13 +32,13 @@
     bibencoding=utf8,
     language=auto,
     autolang=other,
-    defernumbers=true,
+    defernumbers=false,
     doi=false,
     eprint=false,
     isbn=false,
     dashed=false,
     url=false
-]{biblatex}
+]{biblatex} 
 \addbibresource{refs.bib}
 \RequirePackage{bibentry}
 
@@ -53,17 +52,18 @@
 % содержание
 \tableofcontents
 \newpage
-\section{Теоретическая часть}
+\section{Теория проверки условной независимости в трехмерном распределении Бернулли}
 \input{bernoulli}
-\input{exponential_form}
-\input{umpu}
-\input{gaussian}
-\input{two_samples}
 \input{partial}
+\input{exponential_form}
+\input{two_samples}
+% \input{gaussian}
+
+
 
 % % библиография
 \newpage
-\nocite{*}
+% \nocite{*}
 \addcontentsline{toc}{section}{Список использованной литературы}
 \printbibliography
 \end{document}

@@ -1,11 +1,47 @@
-\section{Тест по подвыборкам}
+\subsection{Проверка условной независимости по подвыборкам из условных распределений}
+Пусть
+$$
+\begin{pmatrix}
+        X_1 \\
+        Y_1 \\
+        Z_1
+    \end{pmatrix},
+    \begin{pmatrix}
+        X_2 \\
+        Y_2 \\
+        Z_2
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        X_n \\
+        Y_n \\
+        Z_n
+    \end{pmatrix}
+$$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$. Обозначим $\mathbf{Z}=(Z_1,\ldots,Z_n)$ и 
+$\mathbf{z}=(z_1,\ldots,z_n)$.
+Покажем, что в условном распределении при $\mathbf{Z}=\mathbf{z}$ наблюдения:
+$$
+\Xi = 
+\begin{pmatrix}
+        X_1 \\
+        Y_1
+    \end{pmatrix},
+    \begin{pmatrix}
+        X_2 \\
+        Y_2
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        X_n \\
+        Y_n
+    \end{pmatrix}
+$$
+являются независимыми. 
 
-\begin{lemma}
+\begin{lemma}\label{ci_for_samples}
     $$
-    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid Z_1=z_1,\ldots,Z_n=z_n)=
+    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z})=
     $$
     $$
-    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_1=z_1,\ldots,Z_n=z_n)
+    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
     $$
 \end{lemma}
 \begin{proof}
@@ -14,20 +50,179 @@
     P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
     $$
     $$
-    =P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid Z_1=z_1,\ldots,Z_n=z_n) \cdot
-    $$
-    $$
-    \cdot P(Z_1=z_1,\ldots,Z_n=z_n)
+    =P(\mathbf{Z}=\mathbf{z}) P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z}) 
     $$
     С другой стороны:
     $$
     P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
     $$
     $$
+    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i, Z_i=z_i)=
+    $$
+    $$
     =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_i=z_i)P(Z_i=z_i)=
     $$
     $$
-    =P(Z_1=z_1,\ldots,Z_n=z_n)\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_1=z_1,\ldots,Z_n=z_n)
+    =P(\mathbf{Z}=\mathbf{z})\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
     $$
-
 \end{proof}
+
+Пусть также $\mathbf{Z}=\mathbf{z}$ фиксированы. Разобьем выборку $\Xi$ на две подвыборки $\Xi_0$ и $\Xi_1$, такие что:
+$$
+\Xi_0=
+\begin{pmatrix}
+    X_{i_1} \\
+    Y_{i_1} \\
+\end{pmatrix},
+\begin{pmatrix}
+    X_{i_2} \\
+    Y_{i_2} \\
+\end{pmatrix}, \ldots,
+\begin{pmatrix}
+    X_{i_{n_0}} \\
+    Y_{i_{n_0}} \\
+\end{pmatrix} 
+$$
+где $z_{i_k}=0$ для всех $i_k$ при $k=\overline{1,n_0}$ и $$
+\Xi_1=
+\begin{pmatrix}
+    X_{j_1} \\
+    Y_{j_1} \\
+\end{pmatrix},
+\begin{pmatrix}
+    X_{j_2} \\
+    Y_{j_2} \\
+\end{pmatrix}, \ldots,
+\begin{pmatrix}
+    X_{j_{n_1}} \\
+    Y_{j_{n_1}} \\
+\end{pmatrix} 
+$$
+где $z_{j_k}=1$ для всех $j_k$ при $k=\overline{1,n_1}$. Сформулируем следующую теорему.
+
+\begin{theorem}
+    Пусть $\mathbf{Z}=\mathbf{z}$ -- фиксированы. Тогда выборка $\Xi_0$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=0$.
+\end{theorem}
+\begin{proof}
+    По лемме \ref{ci_for_samples}:
+    $$
+    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z})=
+    $$
+    $$
+    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
+    $$
+    Просуммировав обе части вышепредставленного равенства по всем возможным значениям 
+    $x_{j_1}, y_{j_1}, \ldots, x_{j_{n_1}},y_{j_{n_1}}$ получаем:
+    $$
+    P(X_{i_1}=x_{i_1},Y_{i_1}=y_{i_1},\ldots,X_{i_{n_0}}=x_{i_{n_0}},Y_{i_{n_0}}=y_{i_{n_0}} \mid \mathbf{Z}=\mathbf{z})=
+    $$
+    $$
+    =\prod_{k=1}^{n_0} P(X_{i_{n_k}}=x_{i_{n_k}}, Y_{i_{n_k}}=y_{i_{n_k}} \mid \mathbf{Z}=\mathbf{z})
+    $$
+    Значит $$
+    \Xi_0=
+    \begin{pmatrix}
+        X_{i_1} \\
+        Y_{i_1} \\
+    \end{pmatrix},
+    \begin{pmatrix}
+        X_{i_2} \\
+        Y_{i_2} \\
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        X_{i_{n_0}} \\
+        Y_{i_{n_0}} \\
+    \end{pmatrix} 
+    $$
+    независимые наблюдения при условии $\mathbf{Z}=\mathbf{z}$.
+
+    Покажем, что $\begin{pmatrix}
+        X_{i_k} \\
+        Y_{i_k} \\
+    \end{pmatrix}$ при условии $\mathbf{Z}=\mathbf{z}$ распределен также как и $\begin{pmatrix}
+        X \\
+        Y \\
+    \end{pmatrix}$ при условии $Z=0$.
+
+    $$
+    P(X_{i_{n_k}}=x_{i_{n_k}}, Y_{i_{n_k}}=y_{i_{n_k}} \mid Z_1=z_1,\ldots,Z_n=z_n) = $$
+    $$=P(X_{i_{n_k}}=x_{i_{n_k}}, Y_{i_{n_k}}=y_{i_{n_k}} \mid Z_{i_{n_k}}=z_{i_{n_k}}) = $$
+    $$=P(X=x_{i_{n_k}}, Y=y_{i_{n_k}} \mid Z_{i_{n_k}}=0)$$
+\end{proof}
+
+Аналогично показывается, что выборка $\Xi_1$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=1$.
+
+\begin{theorem}\label{main_theorem}
+    Пусть $\Xi_0$ и $\Xi_1$ -- случайные подвыборки, полученные разбиением случайной выборки $\Xi$.
+    Пусть $\varphi_0$ -- рандомизированный тест проверки произвольной гипотезы $h_0$ по подвыборке $\Xi_0$,
+    $\varphi_1$ -- рандомизированный тест проверки произвольной гипотезы $h_1$ по подвыборке $\Xi_1$. Обозначим
+    $$A_0 = \{\text{отвергнуть гипотезу $h_0$ рандомизированным тестом $\varphi_0$}\}$$ 
+    $$A_1 = \{\text{отвергнуть гипотезу $h_1$ рандомизированным тестом $\varphi_1$}\}$$
+    Тогда $P(A_0 \cap A_1)= P(A_0) P(A_1)$.
+\end{theorem}
+\begin{proof}
+    Пусть $\mathbf{Z}=\mathbf{z}$ фиксированы, тогда
+    статистиками тестов $\varphi_0=\varphi_0(t)$ и 
+    $\varphi_1=\varphi_1(t)$ являются $T_0=T_0(X_{i_1},Y_{i_1},\ldots,X_{i_{n_0}},Y_{i_{n_0}})$,
+    $T_1=T_1(X_{j_1},Y_{j_1},\ldots,X_{j_{n_1}},Y_{j_{n_1}})$ соответственно.
+    Отметим, что $T_0$ и $T_1$ -- независимы при условии $\mathbf{Z}=\mathbf{z}$, поскольку
+    наблюдения
+    $$
+    \begin{pmatrix}
+        X_1 \\
+        Y_1
+    \end{pmatrix},
+    \begin{pmatrix}
+        X_2 \\
+        Y_2
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        X_n \\
+        Y_n
+    \end{pmatrix}
+    $$
+    независимы при условии $\mathbf{Z}=\mathbf{z}$
+    и аргументы статистик как функций не пересекаются.
+    
+    $$
+    P_{\mathbf{Z=z}}(A_0)=
+    \sum_{t}P_{\mathbf{Z=z}}(T_0=t)P(A_0 \mid T_0=t) 
+    =\sum_{t}P_{\mathbf{Z=z}}(T_0=t)\varphi_0(t)=E_{\mathbf{Z=z}}[\varphi_0]
+    $$
+    Аналогично, $P_{\mathbf{Z=z}}(A_1)=E_{\mathbf{Z=z}}[\varphi_1]$.
+
+    $$
+    P_{\mathbf{Z=z}}(A_0 \cap A_1)
+    =\sum_{t_0,t_1} P_{\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
+    $$
+    Отметим, что $P_{\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
+    для того, чтобы при известных значениях статистик $t_0$ и $t_1$ отвергнуть гипотезы $h_0$ и $h_1$ в рандомизированном тесте нужно провести два испытания с вероятностью успеха
+    $\varphi_0(t_0)$ и $\varphi_1(t_1)$. Постулируется, что такие испытания независимые. Тогда:
+    $$
+    P_{\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0,t_1} \varphi_0(t_0) \varphi_1(t_1) P_{\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
+    $$
+    $$
+    =\sum_{t_0,t_1} \varphi_0(t_0) \varphi_1(t_1) P_{\mathbf{Z=z}}(T_0=t_0)P_{\mathbf{Z=z}}(T_1=t_1)=
+    $$
+    $$
+    =E_{\mathbf{Z=z}}[\varphi_0] E_{\mathbf{Z=z}}[\varphi_1]
+    $$
+    По формуле полной вероятности:
+    $$
+    P(A_0) = \sum_{\mathbf{z}} P_{\mathbf{Z=z}}(A_0) P(\mathbf{Z}=\mathbf{z})
+    = \sum_{\mathbf{z}} E_{\mathbf{Z=z}}[\varphi_0] P(\mathbf{Z}=\mathbf{z}) = E_{\mathbf{Z=z}}[\varphi_0]
+    $$
+    Аналогично, $P(A_1)=E_{\mathbf{Z=z}}[\varphi_1]$.
+    $$
+    P(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{\mathbf{Z=z}}(A_0 \cap A_1) P(\mathbf{Z}=\mathbf{z})
+    = \sum_{\mathbf{z}} E_{\mathbf{Z=z}}[\varphi_0] E_{\mathbf{Z=z}}[\varphi_1] P(\mathbf{Z}=\mathbf{z}) =
+    $$
+    $$
+    = E_{\mathbf{Z=z}}[\varphi_0] E_{\mathbf{Z=z}}[\varphi_1]
+    $$
+    Таким образом, $P(A_0 \cap A_1)=P(A_0) P(A_1)$.
+\end{proof}
+
+Заметим, что в теореме \ref{main_theorem} мы не требовали истинности
+гипотез $h_0$ и $h_1$. Таким образом, события $A_0$ и $A_1$ независимы
+по любому распределению.

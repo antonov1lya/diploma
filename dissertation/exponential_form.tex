@@ -1,70 +1,64 @@
-% Трехмерное распределение Бернулли можно записать с помощью следующего выражения:
-% \begin{equation}\label{expon}
-%     P(X=x,Y=y,Z=z)=p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z}
-% \end{equation}
-% Покажем, что трехмерное распределение Бернулли принадлежит к многопараметрическому экспоненциальному семейству \cite{Lehmann1986}.
-% \begin{lemma}\label{factorization}
-%     $$
-%     P(X=x,Y=y,Z=z)= p_{000}
-%         \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
-%     $$ +
-%         x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
-%         z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
-%     $$
-%     $$
-%         + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
-%         xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
-%         yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
-%     $$
-% \end{lemma}
-
-% \begin{proof}
-%     $$
-%     P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
-%     $$
-%     $$
-%         =\exp \Biggl\{ (1-x)(1-y)(1-z) \ln p_{000} +
-%         (1-x)(1-y)z \ln p_{001}+
-%     $$
-%     $$
-%         + (1-x)y(1-z) \ln p_{010} + (1-x)y z \ln p_{011} +  x(1-y)(1-z) \ln p_{100} +
-%     $$
-%     $$
-%         +   x(1-y) z \ln p_{101}
-%         +   x y (1-z) \ln p_{110} +   x y z \ln p_{111} \Biggr\} =
-%     $$
-%     $$
-%         =\exp \Biggl\{   ( 1 - y -  x +  x y
-%         -  z +  y z +  x z -  x y z ) \ln p_{000} +
-%     $$
-%     $$
-%         +    (z -  y z -  x z +  x y z) \ln p_{001}  +
-%           (y -  y z -  x y +  x y z)  \ln p_{010} +
-%     $$
-%     $$
-%         +    (y z -  x y z ) \ln p_{011} +
-%            (x -  x z -  x y +  x y z ) \ln p_{100} +
-%     $$
-%     $$
-%         +   (x z -  x y z ) \ln p_{101} +   (x y -  x y z) \ln p_{110} +
-%           x y z \ln p_{111} \Biggr\}=
-%     $$
-%     $$
-%         = \exp \Biggl\{ \ln p_{000} \Biggr\}
-%         \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
-%     $$ +
-%         x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
-%         z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
-%     $$
-%     $$
-%         + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
-%         xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
-%         yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
-%     $$
-% \end{proof}
-
-\subsection{Связь параметров в экспоненциальной форме записи трехмерного распределения Бернулли с условной независимостью}
-
+\subsection{Тест на параметр трехмерного распределения Бернулли в экспоненциальной форме}\label{expon_form_section}
+Следующая лемма характеризует вид трехмерного распределения Бернулли в экспоненциальной форме.
+\begin{lemma}\label{factorization}
+    $$
+    P(X=x,Y=y,Z=z)= p_{000}
+        \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
+    $$ +
+        x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
+        z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
+    $$
+    $$
+        + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
+        xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
+        yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
+    $$
+\end{lemma}
+\begin{proof}
+    $$
+    P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
+    $$
+    $$
+        =\exp \Biggl\{ (1-x)(1-y)(1-z) \ln p_{000} +
+        (1-x)(1-y)z \ln p_{001}+
+    $$
+    $$
+        + (1-x)y(1-z) \ln p_{010} + (1-x)y z \ln p_{011} +  x(1-y)(1-z) \ln p_{100} +
+    $$
+    $$
+        +   x(1-y) z \ln p_{101}
+        +   x y (1-z) \ln p_{110} +   x y z \ln p_{111} \Biggr\} =
+    $$
+    $$
+        =\exp \Biggl\{   ( 1 - y -  x +  x y
+        -  z +  y z +  x z -  x y z ) \ln p_{000} +
+    $$
+    $$
+        +    (z -  y z -  x z +  x y z) \ln p_{001}  +
+          (y -  y z -  x y +  x y z)  \ln p_{010} +
+    $$
+    $$
+        +    (y z -  x y z ) \ln p_{011} +
+           (x -  x z -  x y +  x y z ) \ln p_{100} +
+    $$
+    $$
+        +   (x z -  x y z ) \ln p_{101} +   (x y -  x y z) \ln p_{110} +
+          x y z \ln p_{111} \Biggr\}=
+    $$
+    $$
+        = p_{000}
+        \exp \Biggl\{  xyz \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) +$$
+    $$ +
+        x \ln\left(\dfrac{p_{100}}{p_{000}}\right) +  y \ln\left(\dfrac{p_{010}}{p_{000}}\right) +
+        z \ln\left(\dfrac{p_{001}}{p_{000}}\right) +
+    $$
+    $$
+        + xy \ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) +
+        xz \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) +
+        yz \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \Biggr\}
+    $$
+\end{proof}
+Среди параметров, стоящих при статистиках можно выделить параметр, связанный с условной независимостью.
 \begin{theorem}
     Пусть $\theta = \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right)$.
     Если выполнено одно из условий:
@@ -96,3 +90,166 @@
             $\theta=\ln(1)=0$.
         \end{enumerate}
     \end{proof}
+
+    Таким образом, параметр $\theta = \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right)$ отражает наличие условно независимой пары
+    случайных величин в трехмерном распределении Бернулли.
+    Для проверки гипотезы о равенстве параметра $\theta$ нулю можно использовать 
+    теорию РНМН тестов \cite{Lehmann1986}. Пусть
+    $$
+        \begin{pmatrix}
+            X_1 \\
+            Y_1 \\
+            Z_1
+        \end{pmatrix},
+        \begin{pmatrix}
+            X_2 \\
+            Y_2 \\
+            Z_2
+        \end{pmatrix}, \ldots,
+        \begin{pmatrix}
+            X_n \\
+            Y_n \\
+            Z_n
+        \end{pmatrix}
+    $$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$.
+    Из леммы \ref{factorization} непосредственно следует, что совместное распределение повторной выборки имеет вид:
+    $$
+    P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+    $$
+    $$
+    =\prod_{i=1}^n P(X_i=x_i,Y_i=y_i,Z_i=z_i) =
+    $$
+    $$
+     =(p_{000})^n
+            \exp \Biggl\{ \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) \sum_{i=1}^n x_i y_i z_i +$$
+        $$ +
+            \ln\left(\dfrac{p_{100}}{p_{000}}\right) \sum_{i=1}^{n} x_i + \ln\left(\dfrac{p_{010}}{p_{000}}\right) \sum_{i=1}^{n} y_i +
+            \ln\left(\dfrac{p_{001}}{p_{000}}\right) \sum_{i=1}^{n} z_i +
+        $$
+        $$
+            +\ln \left(\dfrac{p_{000}p_{110}}{p_{010}p_{100}}\right) \sum_{i=1}^n x_i y_i +
+            \ln \left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right) \sum_{i=1}^n x_i z_i +
+            \ln \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right) \sum_{i=1}^n y_i z_i \Biggr\}
+        $$
+    
+    Согласно \cite{Lehmann1986} РНМН тест проверки гипотезы $H: \theta = \theta_0$ против альтернативы $K: \theta \neq \theta_0$, где $\theta_0=0$, имеет вид:
+    $$
+    \varphi^{\text{$\theta$ - UMPU}}(u,t)=\begin{cases}
+        1, \; u<C_1(t) \text{ или } u>C_2(t)\\
+        \gamma_i, \; u=C_i(t), \; i=1,2\\
+        0, \; C_1(t)<u<C_2(t)
+    \end{cases}
+    $$
+    где константы $C_i$ и $\gamma_i$ определяются из системы уравнений:
+    $$
+    \begin{cases}
+        E_{\theta_0}[\varphi^{\text{$\theta$ - UMPU}}(U,T) \mid T=t]=\alpha \\
+        E_{\theta_0}[U\varphi^{\text{$\theta$ - UMPU}}(U,T) \mid T=t]=\alpha E_{\theta_0}[U \mid T=t]
+    \end{cases}
+    $$
+    а статистиками являются:
+    $$
+        U = \sum_{i=1}^n X_i Y_i Z_i,
+        T_1 = \sum_{i=1}^n X_i Y_i,
+        T_2 = \sum_{i=1}^n X_i Z_i,
+        T_3 = \sum_{i=1}^n Y_i Z_i,
+    $$
+    $$
+        T_4 = \sum_{i=1}^n X_i,
+        T_5 = \sum_{i=1}^n Y_i,
+        T_6 = \sum_{i=1}^n Z_i
+    $$
+    
+    Положим $k_1(u)=u$, $k_2(u)=t_1-u$, $k_3(u)=t_2-u$, $k_4(u)=t_3-u$, $k_5(u)=t_4-t_1-t_2+u$, $k_6(u)=t_5-t_1-t_3+u$,
+    $k_7(u)=t_6 - t_2 - t_3 + u$, $k_8(u)=n-u+t_1+t_2+t_3-t_4-t_5-t_6$. Приведем лемму, характеризующую совместное распределение статистик 
+    $(U,T_1,T_2,T_3,T_4,T_5,T_6)$.
+    \begin{lemma}\label{joint_distribution}
+        $$P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+        $$=\frac{n!}{\prod_{i=1}^8 k_i(u)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+            \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+            \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3} \times$$
+        $$
+            \times \left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+            \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n
+        $$
+    \end{lemma}
+    \begin{proof}
+        $$
+            P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=
+        $$
+        $$
+            =P\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i=t_1, \sum_{i=1}^n X_i Z_i=t_2,\sum_{i=1}^n Y_i Z_i=t_3,
+            $$
+            $$
+            \sum_{i=1}^n X_i=t_4,\sum_{i=1}^n Y_i=t_5, \sum_{i=1}^n Z_i=t_6\biggr)=
+        $$
+        $$
+            =P\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i (1- Z_i)=t_1-u, \sum_{i=1}^n X_i (1-Y_i) Z_i=t_2-u,
+        $$
+        $$
+            \sum_{i=1}^n (1-X_i) Y_i Z_i=t_3-u,
+            \sum_{i=1}^{n} X_i(1-Y_i)(1-Z_i)=t_4-t_1-t_2+u,
+        $$
+        $$
+            \sum_{i=1}^{n} (1-X_i)Y_i(1-Z_i)=t_5-t_1-t_3+u,
+            \sum_{i=1}^{n} (1-X_i)(1-Y_i)Z_i = t_6 - t_2 - t_3 + u,
+        $$
+        $$
+            \sum_{i=1}^n (1-X_i)(1-Y_i)(1-Z_i)=n-u+t_1+t_2+t_3-t_4-t_5-t_6\biggr)=
+        $$
+        $$
+            = \frac{n!}{\prod_{i=1}^8 k_i(u)!} p_{111}^u p_{110}^{t_1-u} p_{101}^{t_2-u} p_{011}^{t_3-u}
+            p_{100}^{t_4-t_1-t_2+u} p_{010}^{t_5-t_1-t_3+u} p_{001}^{t_6 - t_2 - t_3 + u} \times
+        $$
+        $$
+            \times p_{000}^{n-u+t_1+t_2+t_3-t_4-t_5-t_6}
+            =
+        $$
+        $$=\frac{n!}{\prod_{i=1}^8 k_i(u)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u
+            \left(\dfrac{p_{000} p_{110}}{p_{010} p_{100}}\right)^{t_1}\left(\dfrac{p_{000}p_{101}}{p_{001}p_{100}}\right)^{t_2}
+            \left(\dfrac{p_{000}p_{011}}{p_{001}p_{010}}\right)^{t_3} \times$$
+        $$
+            \times\left(\dfrac{p_{100}}{p_{000}}\right)^{t_4}
+            \left(\dfrac{p_{010}}{p_{000}}\right)^{t_5} \left(\dfrac{p_{001}}{p_{000}}\right)^{t_6} p_{000}^n
+        $$
+    \end{proof}
+    Явно найдем распредение $U=u$ при условии $T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6$.
+    \begin{lemma}\label{u_dist}
+        $$P_{\theta_0}(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=\dfrac{\frac{1}{\prod_{i=1}^8 k_i(u)!}}
+            {\sum_{s\in \mathcal{D}} \frac{1}{\prod_{i=1}^8 k_i(s)!}}$$
+        где $\mathcal{D}=\{x \in \mathbb{Z}: 0\leq k_i(s) \leq n \text{ для всех } i=1\ldots,8\}$.
+    \end{lemma}
+    \begin{proof}
+        Найдем маргинальное распределение вектора $(T_1,\ldots,T_6)^T$:
+        $$P(T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+        $$=\sum_{s\in \mathcal{D}} P(U=s, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)$$
+        Тогда условное распределение статистики $U$ при условии $T_1=t_1,\ldots,T_6=t_6$ можно записать в виде:
+        $$P(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=$$
+        $$=\dfrac{\frac{n!}{\prod_{i=1}^8 k_i(u)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u}
+            {\sum_{s\in \mathcal{D}} \frac{n!}{\prod_{i=1}^8 k_i(s)!} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^s}$$
+        При истинности гипотезы $\theta=\theta_0=0$ параметр $\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}=1$.
+        $$P_{\theta_0}(U=u \mid T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=\dfrac{\frac{1}{\prod_{i=1}^8 k_i(u)!}}
+            {\sum_{s\in \mathcal{D}} \frac{1}{\prod_{i=1}^8 k_i(s)!}}$$
+    \end{proof}
+    
+    % Условную вероятность из леммы \ref{u_dist} можно эффективно вычислить на ЭВМ.
+    % Пусть $f(i)=\sum_{j=1}^{i} \ln(j)$. Тогда значение условной вероятности представится в виде:
+    % $$
+    % \dfrac{\frac{1}{\prod_{i=1}^8 k_i(u)!}}{\sum_{s \in D} \frac{1}{\prod_{i=1}^8 k_i(s)!}}=
+    % \dfrac{\exp \biggl\{ \ln \biggl( \frac{1}{\prod_{i=1}^8 k_i(u)!} \biggr) \biggr\}}
+    % {\sum_{s \in D} \exp \biggl\{ \ln \biggl( \frac{1}{\prod_{i=1}^8 k_i(s)!} \biggr) \biggr\}}
+    % = \dfrac{\exp \biggl\{ -\sum_{i=1}^8 \ln(k_i(u)!) \biggr\}}{\sum_{s \in D} \exp \biggl\{ -\sum_{i=1}^8 \ln(k_i(s)!) \biggr\}} =
+    % $$
+    % $$
+    % = \dfrac{\exp \biggl\{ -\sum_{i=1}^8 f(k_i(u)) \biggr\}}{\sum_{s \in D} \exp \biggl\{ -\sum_{i=1}^8 f(k_i(s)) \biggr\}}
+    % $$
+    % Полученное выражение удобно с позиции того, что современные ЭВМ умеют вычислять функцию
+    % $$
+    % \varphi(x,i)=\dfrac{\exp\{x_i\}}{\sum_{j=1}^{n} \exp\{x_j\}}, \; x=(x_1,\ldots,x_n)
+    % $$
+    % За счет свойства
+    % $$
+    % \varphi(x,i)=\dfrac{\exp\{x_i\}}{\sum_{j=1}^{n} \exp\{x_j\}} = \dfrac{\exp\{x_i - C\}}{\sum_{j=1}^{n} \exp\{x_j - C\}}
+    % , \text{ где } C=\max_{1\leq j \leq n} x_j
+    % $$
+    % удается избежать переполнения вещественного типа данных, связанного с экспонентой.
