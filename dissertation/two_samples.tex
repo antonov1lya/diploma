@@ -153,12 +153,14 @@ $$
 Аналогично показывается, что выборка $\Xi_1$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=1$.
 
 \begin{theorem}\label{main_theorem}
-    Пусть $\Xi_0$ и $\Xi_1$ -- случайные подвыборки, полученные разбиением случайной выборки $\Xi$.
-    Пусть $\varphi_0$ -- рандомизированный тест проверки произвольной гипотезы $h_0$ по подвыборке $\Xi_0$,
-    $\varphi_1$ -- рандомизированный тест проверки произвольной гипотезы $h_1$ по подвыборке $\Xi_1$. Обозначим
+    Пусть $\Xi_0$ и $\Xi_1$ -- подвыборки, полученные разбиением случайной выборки $\Xi$.
+    Пусть $\varphi_0$ -- рандомизированный тест проверки произвольной гипотезы $h_0$ по подвыборке $\Xi_0$, причем $\varphi_0$ тест уровня
+    при любом размере подвыборки $\Xi_0$.
+    Пусть $\varphi_1$ -- рандомизированный тест проверки произвольной гипотезы $h_1$ уровня $\alpha_1$ по подвыборке $\Xi_1$,
+    причем $\varphi_1$ тест уровня $\alpha_1$ при любом размере подвыборки $\Xi_1$. Обозначим
     $$A_0 = \{\text{отвергнуть гипотезу $h_0$ рандомизированным тестом $\varphi_0$}\}$$ 
     $$A_1 = \{\text{отвергнуть гипотезу $h_1$ рандомизированным тестом $\varphi_1$}\}$$
-    Тогда $P(A_0 \cap A_1)= P(A_0) P(A_1)$.
+    Тогда $P_{h_0\cap h_1}(A_0 \cap A_1)= P_{h_0\cap h_1}(A_0) P_{h_0\cap h_1}(A_1)$.
 \end{theorem}
 \begin{proof}
     Пусть $\mathbf{Z}=\mathbf{z}$ фиксированы, тогда
@@ -183,46 +185,60 @@ $$
     $$
     независимы при условии $\mathbf{Z}=\mathbf{z}$
     и аргументы статистик как функций не пересекаются.
-    
-    $$
-    P_{\mathbf{Z=z}}(A_0)=
-    \sum_{t}P_{\mathbf{Z=z}}(T_0=t)P(A_0 \mid T_0=t) 
-    =\sum_{t}P_{\mathbf{Z=z}}(T_0=t)\varphi_0(t)=E_{\mathbf{Z=z}}[\varphi_0]
-    $$
-    Аналогично, $P_{\mathbf{Z=z}}(A_1)=E_{\mathbf{Z=z}}[\varphi_1]$.
+    Поскольку $\varphi_0$ и $\varphi_1$ при любых объемах наблюдений тесты уровня $\alpha_0$
+    и $\alpha_1$ соответственно, то 
+    $P_{h_0\cap h_1,\mathbf{Z=z}}(A_0)=\alpha_0$ и 
+    $P_{h_0\cap h_1,\mathbf{Z=z}}(A_1)=\alpha_1$.
 
     $$
-    P_{\mathbf{Z=z}}(A_0 \cap A_1)
-    =\sum_{t_0,t_1} P_{\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
+    P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1)=
     $$
-    Отметим, что $P_{\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
+    $$
+    =\sum_{t_0,t_1} P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
+    $$
+    Отметим, что $P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
     для того, чтобы при известных значениях статистик $t_0$ и $t_1$ отвергнуть гипотезы $h_0$ и $h_1$ в рандомизированном тесте нужно провести два испытания с вероятностью успеха
     $\varphi_0(t_0)$ и $\varphi_1(t_1)$. Постулируется, что такие испытания независимые. Тогда:
     $$
-    P_{\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0,t_1} \varphi_0(t_0) \varphi_1(t_1) P_{\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
+    P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0,t_1} \varphi_0(t_0) \varphi_1(t_1) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
     $$
     $$
-    =\sum_{t_0,t_1} \varphi_0(t_0) \varphi_1(t_1) P_{\mathbf{Z=z}}(T_0=t_0)P_{\mathbf{Z=z}}(T_1=t_1)=
+    =\sum_{t_0,t_1} \varphi_0(t_0) \varphi_1(t_1) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0)P_{h_0\cap h_1,\mathbf{Z=z}}(T_1=t_1)=
     $$
     $$
-    =E_{\mathbf{Z=z}}[\varphi_0] E_{\mathbf{Z=z}}[\varphi_1]
-    $$
-    По формуле полной вероятности:
-    $$
-    P(A_0) = \sum_{\mathbf{z}} P_{\mathbf{Z=z}}(A_0) P(\mathbf{Z}=\mathbf{z})
-    = \sum_{\mathbf{z}} E_{\mathbf{Z=z}}[\varphi_0] P(\mathbf{Z}=\mathbf{z}) = E_{\mathbf{Z=z}}[\varphi_0]
-    $$
-    Аналогично, $P(A_1)=E_{\mathbf{Z=z}}[\varphi_1]$.
-    $$
-    P(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{\mathbf{Z=z}}(A_0 \cap A_1) P(\mathbf{Z}=\mathbf{z})
-    = \sum_{\mathbf{z}} E_{\mathbf{Z=z}}[\varphi_0] E_{\mathbf{Z=z}}[\varphi_1] P(\mathbf{Z}=\mathbf{z}) =
+    =\sum_{t_0}[ \varphi_0(t_0) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0) \sum_{t_1}\varphi_1(t_1) P_{h_0\cap h_1,\mathbf{Z=z}}(T_1=t_1)]=
     $$
     $$
-    = E_{\mathbf{Z=z}}[\varphi_0] E_{\mathbf{Z=z}}[\varphi_1]
+    = \sum_{t_0}[ \varphi_0(t_0) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0) \alpha_1] 
+    =\alpha_0 \alpha_1
     $$
-    Таким образом, $P(A_0 \cap A_1)=P(A_0) P(A_1)$.
+    По формуле полной вероятности и полного математического ожидания:
+    $$
+    P_{h_0\cap h_1}(A_0) = \sum_{\mathbf{z}} P_{h_0\cap h_1,\mathbf{Z=z}}(A_0) P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})
+    = \sum_{\mathbf{z}} \alpha_0 P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})=\alpha_0
+    $$
+    Аналогично, $P_{h_0\cap h_1}(A_1)=\alpha_1$.
+    $$
+    P_{h_0\cap h_1}(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1) P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})=
+    $$
+    $$
+    = \sum_{\mathbf{z}} \alpha_0 \alpha_1 P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})
+    = \alpha_0 \alpha_1
+    $$
+    Таким образом, $P_{h_0\cap h_1}(A_0 \cap A_1)=P_{h_0\cap h_1}(A_0) P_{h_0\cap h_1}(A_1)=\alpha_0 \alpha_1$.
 \end{proof}
 
-Заметим, что в теореме \ref{main_theorem} мы не требовали истинности
-гипотез $h_0$ и $h_1$. Таким образом, события $A_0$ и $A_1$ независимы
-по любому распределению.
+В частности, положим $h_0$: $X \ci Y$ при условии $Z=0$, $h_1: X \ci Y$ при условии $Z=1$. Тогда гипотеза проверки
+условной независимости будет иметь вид $h = h_0 \cap h_1$ и тест проверки условной независимости будет иметь вид:
+$$
+\varphi^{\text{subsamples}}=\begin{cases}
+    1, \text{ наступило событие $A_0$ или $A_1$}\\
+    0, \text{ иначе}
+\end{cases}
+$$
+Пусть для простоты $\alpha_0 = \alpha_1 = \beta$.
+Тогда $$P_{h_0 \cap h_1}(\varphi^{\text{subsamples}}=1)=P_{h_0 \cap h_1}(A_0 \cup A_1)=$$ 
+$$ = P_{h_0 \cap h_1}(A_0) + P_{h_0 \cap h_1}(A_1) - 
+P_{h_0 \cap h_1}(A_0 \cap A_1) = 2\beta - \beta^2$$
+Нетрудно проверить, что для контроля $P_{h_0 \cap h_1}(\varphi^{\text{subsamples}}=1)$ достаточно положить
+$\beta = 1 - \sqrt{1-\alpha}$.
