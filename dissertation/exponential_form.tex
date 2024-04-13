@@ -49,7 +49,7 @@ $$
         \end{enumerate}
     \end{proof}
 
-    Таким образом, принятие нулевого значения параметром 
+    Таким образом, нулевое значение параметра
     $\theta$ является необходимым условием наличия условно независимой пары
     случайных величин в трехмерном распределении Бернулли.
     Для проверки гипотезы о равенстве параметра $\theta$ нулю используем 
@@ -103,9 +103,9 @@ $$
         T_6 = \sum_{i=1}^n Z_i \;
     $$
     Обозначим $T=(T_1,\ldots,T_6)$, $t=(t_1,\ldots,t_6)$, $\theta_0=0$.
-    Тогда согласно \cite{Lehmann1986} РНМН тест уровня $\alpha$ проверки гипотезы $H: \theta=\theta_0$ против альтернативы $K: \theta \neq \theta_0$ имеет вид:
+    Тогда согласно \cite{Lehmann1986} РНМН тест уровня $\alpha$ проверки гипотезы $\theta=\theta_0$ против альтернативы $\theta \neq \theta_0$ имеет вид:
     $$
-    \varphi^{\text{$\theta$-UMPU}}(u,t)=\begin{cases}
+    \varphi^{\text{Theta}}(u,t)=\begin{cases}
         1, \; u<C_1(t) \text{ или } u>C_2(t)\\
         \gamma_i, \; u=C_i(t), \; i=1,2\\
         0, \; C_1(t)<u<C_2(t)
@@ -114,8 +114,8 @@ $$
     где константы $C_i$ и $\gamma_i$ определяются из системы уравнений:
     $$
     \begin{cases}
-        E_{\theta_0}[\varphi^{\text{$\theta$-UMPU}}(U,T) \mid T=t]=\alpha \\
-        E_{\theta_0}[U\varphi^{\text{$\theta$-UMPU}}(U,T) \mid T=t]=\alpha E_{\theta_0}[U \mid T=t]
+        E_{\theta_0}[\varphi^{\text{Theta}}(U,T) \mid T=t]=\alpha \\
+        E_{\theta_0}[U\varphi^{\text{Theta}}(U,T) \mid T=t]=\alpha E_{\theta_0}[U \mid T=t]
     \end{cases}
     $$
     Приведем распределение статистики $U$ при условии $T=t$.      
@@ -169,7 +169,11 @@ $$
         $$P_{\theta_0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^8 k_i(u)!)^{-1}}
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^8 k_i(s)!)^{-1}}$$
     \end{proof}
-    
+    Так как $\varphi^{\text{Theta}}$ является тестом уровня
+    $\alpha$ для проверки гипотезы $\theta=\theta_0$, где $\theta_0=0$,
+    и из $X \ci Y \mid Z$ следует $\theta=0$, то 
+    $\varphi^{\text{Theta}}$ является тестом уровня $\alpha$ для проверки
+    гипотезы $h: X \ci Y \mid Z$.
     % Условную вероятность из леммы \ref{u_dist} можно эффективно вычислить на ЭВМ.
     % Пусть $f(i)=\sum_{j=1}^{i} \ln(j)$. Тогда значение условной вероятности представится в виде:
     % $$
