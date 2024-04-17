@@ -1,7 +1,7 @@
 \begin{centering}
-    \subsection{Тест на параметр трехмерного распределения Бернулли в экспоненциальной форме}\label{expon_form_section}
+    \subsection{РНМН тест необходимого условия условной независимости}\label{expon_form_section}
 \end{centering}
-Покажем вид трехмерного распределения Бернулли в экпоненциальной форме:
+Запишем вид трехмерного распределения Бернулли в экпоненциальной форме:
 $$
     P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
 $$
@@ -103,7 +103,7 @@ $$
         T_6 = \sum_{i=1}^n Z_i \;
     $$
     Обозначим $T=(T_1,\ldots,T_6)$, $t=(t_1,\ldots,t_6)$, $\theta_0=0$.
-    Тогда согласно \cite{Lehmann1986} РНМН тест уровня $\alpha$ проверки гипотезы $\theta=\theta_0$ против альтернативы $\theta \neq \theta_0$ имеет вид:
+    Тогда согласно \cite{Lehmann1986} РНМН тест уровня $\alpha$ проверки гипотезы $h^{\text{Theta}}:\theta=\theta_0$ против альтернативы $k^{\text{Theta}}:\theta \neq \theta_0$ имеет вид:
     $$
     \varphi^{\text{Theta}}(u,t)=\begin{cases}
         1, \; u<C_1(t) \text{ или } u>C_2(t)\\
@@ -170,7 +170,7 @@ $$
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^8 k_i(s)!)^{-1}}$$
     \end{proof}
     Так как $\varphi^{\text{Theta}}$ является тестом уровня
-    $\alpha$ для проверки гипотезы $\theta=\theta_0$, где $\theta_0=0$,
+    $\alpha$ для проверки гипотезы $h^{\text{Theta}}: \theta=\theta_0$, где $\theta_0=0$,
     и из $X \ci Y \mid Z$ следует $\theta=0$, то 
     $\varphi^{\text{Theta}}$ является тестом уровня $\alpha$ для проверки
     гипотезы $h: X \ci Y \mid Z$.
