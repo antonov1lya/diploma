@@ -15,18 +15,20 @@
 \usepackage{float}
 
 \usepackage{caption}
-% \captionsetup{font=small}
+\captionsetup{font=footnotesize}
 \captionsetup{labelfont=bf}
 \captionsetup{justification=centering}
 
 \pagestyle{myheadings}
 
 
-\theoremstyle{definition}
-\newtheorem{definition}{Определение}[section]
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{example}{Пример}[section]
-\newtheorem{lemma}{Лемма}[section]
+% \theoremstyle{definition}
+\newtheorem{definition}{Определение}[subsection]
+\newcommand{\definitionautorefname}{опр.}
+\newtheorem{theorem}{Теорема}[subsection]
+\newtheorem{example}{Пример}[subsection]
+\newtheorem{lemma}{Лемма}[subsection]
+\newcommand{\lemmaautorefname}{лемм.}
 
 \def\ci{\perp\!\!\!\perp}
 
@@ -62,6 +64,7 @@
 
 % содержание
 \tableofcontents
+
 \newpage
 
 \begin{centering}
@@ -80,6 +83,8 @@
 
 
 % \input{gaussian}
+
+\newpage
 
 \begin{centering}
     \section{Практическая часть}

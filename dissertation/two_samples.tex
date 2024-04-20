@@ -1,30 +1,34 @@
+\newpage
 \begin{centering}
     \subsection{Проверка условной независимости по подвыборкам из условных распределений}\label{twos}
 \end{centering}
 
-Приведем трактовку определения \ref{cond_ind_def} для трехмерного
-распределения Бернулли. Случайные величины $X$ и $Y$
-условно независимы при условии $Z$ тогда и только тогда,
-когда:
+Приведем трактовку \autoref{cond_ind_def} для трехмерного
+распределения Бернулли. 
+\begin{definition}\label{new_def}
+    В трехмерном распределении Бернулли случайные величины $X$ и $Y$
+    условно независимы при условии $Z$, 
+    если выполнены следующие условия:
+    \begin{itemize}
+        \item $X$ и $Y$ независимы при условии $Z=0$
+        \item $X$ и $Y$  независимы при условии $Z=1$
+    \end{itemize}
+\end{definition}
+Используя \autoref{new_def}, сформулируем индивидуальные гипотезы:
 \begin{itemize}
-    \item $X$ и $Y$ независимы при условии $Z=0$
-    \item $X$ и $Y$  независимы при условии $Z=1$
-\end{itemize}
-Сформулируем индивидуальные гипотезы:
-\begin{itemize}
-    \item $h_0 : X$ и $Y$ независимы при условии $Z=0$
-    \item $h_1 : X$ и $Y$ независимы при условии $Z=1$
+    \item $H_0 : X$ и $Y$ независимы при условии $Z=0$
+    \item $H_1 : X$ и $Y$ независимы при условии $Z=1$
 \end{itemize}
 Тогда гипотеза об условной независимости имеет вид 
-$h = h_0 \cap h_1$. Естественным образом, гипотезу 
-$h_0$ необходимо проверять по наблюдениям
+$H = H_0 \cap H_1$. Естественным образом, гипотезу 
+$H_0$ необходимо проверять по наблюдениям
 $(x_i,y_i,z_i)^T$, в которых $z_i=0$. Поскольку $(X,Y)^T$ при условии
 $Z=z$ имеет двумерное распределение Бернулли, то
-в качестве теста для $h_0$ можно использовать
+в качестве теста для $H_0$ можно использовать
 $\varphi_0 = \varphi^{\text{Independence}}_0$, 
-приведенный в разделе \ref{bivariate_umpu}. Аналогичные рассуждения 
-справедливы и для гипотезы $h_1$. Учитывая озвученные соображения,
-построим тест проверки гипотезы $h$, контролирующий вероятность
+приведенный в \autoref{bivariate_umpu}. Аналогичные рассуждения 
+справедливы и для гипотезы $H_1$. Учитывая озвученные соображения,
+построим тест проверки гипотезы $H$, контролирующий вероятность
 ошибки первого рода на уровне $\alpha$.
 Пусть
 $$
@@ -45,7 +49,7 @@ $$
     \end{pmatrix}
 $$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$. Обозначим $\mathbf{Z}=(Z_1,\ldots,Z_n)$ и 
 $\mathbf{z}=(z_1,\ldots,z_n)$.
-Покажем, что в условном распределении при $\mathbf{Z}=\mathbf{z}$ наблюдения:
+Покажем, что в условном распределении при $\mathbf{Z}=\mathbf{z}$ наблюдения
 $$
 \Xi = 
 \begin{pmatrix}
@@ -185,16 +189,16 @@ $\mathbf{Z}=\mathbf{z}$.
 \begin{theorem}\label{main_theorem}
     Пусть $\Xi_0$ и $\Xi_1$ -- подвыборки, полученные разбиением случайной выборки $\Xi$.
     Пусть $\varphi_0$ и $\varphi_1$ -- рандомизированные тесты 
-    проверки гипотез $h_0$ и $h_1$ по повторным выборкам 
+    проверки гипотез $H_0$ и $H_1$ по повторным выборкам 
     $\Xi_0$ и $\Xi_1$ соответственно.
     Введем события:
-    $$A_0 = \{\text{отвергнуть гипотезу $h_0$ рандомизированным тестом $\varphi_0$}\}$$ 
-    $$A_1 = \{\text{отвергнуть гипотезу $h_1$ рандомизированным тестом $\varphi_1$}\}$$
+    $$A_0 = \{\text{отвергнуть гипотезу $H_0$ рандомизированным тестом $\varphi_0$}\}$$ 
+    $$A_1 = \{\text{отвергнуть гипотезу $H_1$ рандомизированным тестом $\varphi_1$}\}$$
     Пусть $\varphi_0$ и $\varphi_1$ тесты уровня $\alpha_0$ и $\alpha_1$
     при любом объеме наблюдений в подвыборках $\Xi_0$ и $\Xi_1$ соответственно, то есть:
-    $$P_{h_0\cap h_1,\mathbf{Z=z}}(A_0)=\alpha_0$$ 
-    $$P_{h_0\cap h_1,\mathbf{Z=z}}(A_1)=\alpha_1$$
-    Тогда $P_{h_0\cap h_1}(A_0 \cap A_1)= P_{h_0\cap h_1}(A_0) P_{h_0\cap h_1}(A_1)$.
+    $$P_{H_0\cap H_1,\mathbf{Z=z}}(A_0)=\alpha_0$$ 
+    $$P_{H_0\cap H_1,\mathbf{Z=z}}(A_1)=\alpha_1$$
+    Тогда $P_{H_0\cap H_1}(A_0 \cap A_1)= P_{H_0\cap H_1}(A_0) P_{H_0\cap H_1}(A_1)$.
 \end{theorem}
 \begin{proof}
     Пусть $\mathbf{Z}=\mathbf{z}$ фиксировано. 
@@ -203,58 +207,58 @@ $\mathbf{Z}=\mathbf{z}$.
     T_1=(X_{j_1},Y_{j_1},\ldots,X_{j_{n_1}},Y_{j_{n_1}})^T$$
     случайные векторы наблюдений, используемые в тестах $\varphi_0$ и 
     $\varphi_1$ соответственно.
-    Распишем следующую вероятность:
+    Распишем следующую вероятность
     $$
-    P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1)=
+    P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1)=
     $$
     $$
-    =\sum_{t_0}\sum_{t_1} P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
+    =\sum_{t_0}\sum_{t_1} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
     $$
-    Отметим, что $P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
-    для того, чтобы при известных значениях статистик $t_0$ и $t_1$ отвергнуть гипотезы $h_0$ и $h_1$, в рандомизированном тесте нужно провести два испытания с вероятностью успеха
+    Отметим, что $P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
+    для того, чтобы при известных значениях статистик $t_0$ и $t_1$ отвергнуть гипотезы $H_0$ и $H_1$, в рандомизированном тесте нужно провести два испытания с вероятностью успеха
     $\varphi_0(t_0)$ и $\varphi_1(t_1)$. Постулируется, что такие испытания независимые. Тогда:
     $$
-    P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
+    P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
     $$
     $$
-    =\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0)P_{h_0\cap h_1,\mathbf{Z=z}}(T_1=t_1)=
+    =\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0)P_{H_0\cap H_1,\mathbf{Z=z}}(T_1=t_1)=
     $$
     $$
-    =\sum_{t_0}\left[ \varphi_0(t_0) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0) \left(\sum_{t_1}\varphi_1(t_1) P_{h_0\cap h_1,\mathbf{Z=z}}(T_1=t_1)\right)\right]=
+    =\sum_{t_0}\left[ \varphi_0(t_0) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0) \left(\sum_{t_1}\varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_1=t_1)\right)\right]=
     $$
     $$
-    = \sum_{t_0} \varphi_0(t_0) P_{h_0\cap h_1,\mathbf{Z=z}}(T_0=t_0) \alpha_1 
+    = \sum_{t_0} \varphi_0(t_0) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0) \alpha_1 
     =\alpha_0 \alpha_1
     $$
     По формуле полной вероятности:
     $$
-    P_{h_0\cap h_1}(A_0) = \sum_{\mathbf{z}} P_{h_0\cap h_1,\mathbf{Z=z}}(A_0) P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})
-    = \sum_{\mathbf{z}} \alpha_0 P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})=\alpha_0
+    P_{H_0\cap H_1}(A_0) = \sum_{\mathbf{z}} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0) P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})
+    = \sum_{\mathbf{z}} \alpha_0 P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})=\alpha_0
     $$
-    Аналогично, $P_{h_0\cap h_1}(A_1)=\alpha_1$. Также по формуле полной вероятности:
+    Аналогично, $P_{H_0\cap H_1}(A_1)=\alpha_1$. Также по формуле полной вероятности:
     $$
-    P_{h_0\cap h_1}(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{h_0\cap h_1,\mathbf{Z=z}}(A_0 \cap A_1) P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})=
+    P_{H_0\cap H_1}(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1) P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})=
     $$
     $$
-    = \sum_{\mathbf{z}} \alpha_0 \alpha_1 P_{h_0\cap h_1}(\mathbf{Z}=\mathbf{z})
+    = \sum_{\mathbf{z}} \alpha_0 \alpha_1 P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})
     = \alpha_0 \alpha_1
     $$
-    Таким образом, $P_{h_0\cap h_1}(A_0 \cap A_1)=P_{h_0\cap h_1}(A_0) P_{h_0\cap h_1}(A_1)=\alpha_0 \alpha_1$.
+    Таким образом, $P_{H_0\cap H_1}(A_0 \cap A_1)=P_{H_0\cap H_1}(A_0) P_{H_0\cap H_1}(A_1)=\alpha_0 \alpha_1$.
 \end{proof}
-Применим теорему \ref{main_theorem} для проверки условной независимости в трехмерном
+Применим \autoref{main_theorem} для проверки условной независимости в трехмерном
 распределении Бернулли.
 Положим индивидуальные гипотезы:
 \begin{itemize}
-    \item $h_0 : X$ и $Y$ независимы при условии $Z=0$
-    \item $h_1 : X$ и $Y$ независимы при условии $Z=1$
+    \item $H_0 : X$ и $Y$ независимы при условии $Z=0$
+    \item $H_1 : X$ и $Y$ независимы при условии $Z=1$
 \end{itemize}
-Для проверки гипотез $h_0$ и $h_1$ будем использовать тесты
+Для проверки гипотез $H_0$ и $H_1$ будем использовать тесты
 $\varphi_0 = \varphi^{\text{Independence}}_0$ и 
 $\varphi_1 = \varphi^{\text{Independence}}_1$ уровня $\alpha_0$ и $\alpha_1$ 
 по повторным выборкам
 $\Xi_0$ и $\Xi_1$ соответственно.
 Тогда гипотеза
-об условной независимости имеет вид $h = h_0 \cap h_1$ и тест проверки условной независимости можно определить как:
+об условной независимости имеет вид $H = H_0 \cap H_1$ и тест проверки условной независимости можно определить как:
 $$
 \varphi^{\text{Subsamples}}=\begin{cases}
     1, \text{ наступило событие $A_0 \cup A_1$}\\
@@ -262,9 +266,63 @@ $$
 \end{cases}
 $$
 Пусть далее $\alpha_0 = \alpha_1 = \gamma$.
-Тогда $$P_{h_0 \cap h_1}(\varphi^{\text{Subsamples}}=1)=P_{h_0 \cap h_1}(A_0 \cup A_1)=$$ 
-$$ = P_{h_0 \cap h_1}(A_0) + P_{h_0 \cap h_1}(A_1) - 
-P_{h_0 \cap h_1}(A_0 \cap A_1) = 2\gamma - \gamma^2$$
-Нетрудно проверить, что для контроля $P_{h_0 \cap h_1}(\varphi^{\text{Subsamples}}=1)=\alpha$ достаточно положить
-уровень значимости $\gamma = 1 - \sqrt{1-\alpha}$ на индивидуальных
-тестах проверки гипотез $h_0$ и $h_1$.
+Тогда $$P_{H_0\cap H_1}(\varphi^{\text{Subsamples}}=1)=P_{H_0\cap H_1}(A_0 \cup A_1)=$$ 
+$$ = P_{H_0\cap H_1}(A_0) + P_{H_0\cap H_1}(A_1) - 
+P_{H_0\cap H_1}(A_0 \cap A_1) = 2\gamma - \gamma^2$$
+Нетрудно проверить, что для контроля $P_{H_0\cap H_1}(\varphi^{\text{Subsamples}}=1)=\alpha$ достаточно положить
+уровень значимости $\gamma = 1 - \sqrt{1-\alpha}$ на
+тестах проверки индивидуальных гипотез $H_0$ и $H_1$.
+
+Покажем, что тест $\varphi^{\text{Subsamples}}$ является несмещенным.
+\begin{theorem}\label{unbias}
+    Тест $\varphi^{\text{Subsamples}}$
+    уровня $\alpha$
+    проверки гипотезы 
+    $H: X \ci Y \mid Z$ является несмещенным.
+\end{theorem}
+\begin{proof}
+    Положим $\Theta_{H}=\{\theta: p_{000}p_{110}=p_{010}p_{100}
+    \text{ и } p_{001}p_{111}=p_{011}p_{101}\}$, 
+    $\Theta_{K}=\{\theta: p_{000}p_{110}\neq p_{010}p_{100}
+    \text{ или } p_{001}p_{111}\neq p_{011}p_{101}\}$.
+
+    Отметим, что $\varphi_0 = \varphi^{\text{Independence}}_0$ и
+    $\varphi_1 = \varphi^{\text{Independence}}_1$ -- несмещенные тесты
+    проверки гипотез  $H_0$ и $H_1$ уровня $\gamma$
+    соответственно. Причем, при истинности гипотез $H_0$
+    и $H_1$ на тестах $\varphi_0$ и $\varphi_1$ вероятность ошибки
+    первого рода равна $\gamma$.
+    Поэтому,
+    $E_{\theta}\varphi_0 = P_\theta(A_0)\geq \gamma$ и $E_{\theta}\varphi_1 = P_\theta(A_1)\geq \gamma$ для любого
+    $\theta \in \Theta_{H} \cup \Theta_{K}$.
+
+    Пусть $\theta \in \Theta_{H}$, тогда
+    $E_{\theta}\varphi^{\text{Subsamples}} =
+    P_{\theta}(\varphi^{\text{Subsamples}}=1) = \alpha$ поскольку
+    $\varphi^{\text{Subsamples}}$ тест уровня $\alpha$.
+
+    Пусть $\theta \in \Theta_{K}$.
+    Как и в доказательстве \autoref{main_theorem} можно показать, что
+    $P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cap A_1)=
+    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0)
+    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1)$.
+    Следовательно: 
+    $$P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cup A_1) 
+    = P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0) +
+    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1) - 
+    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0)
+    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1) 
+    \geq \gamma + \gamma - \gamma^2 = \alpha
+    $$
+    Тогда:
+    $$
+    E_{\theta}\varphi^{\text{Subsamples}} =
+    P_{\theta}(\varphi^{\text{Subsamples}}=1)=
+    P_{\theta}(A_0 \cup A_1)=
+    $$
+    $$
+    =\sum_{\mathbf{z}} P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cup A_1)P_{\theta}(\mathbf{Z}=\mathbf{z}) \geq
+    \sum_{\mathbf{z}} \alpha P_{\theta}(\mathbf{Z}=\mathbf{z}) = \alpha
+    $$
+    
+\end{proof}
