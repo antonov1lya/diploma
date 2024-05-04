@@ -11,8 +11,11 @@
 
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{amsthm}
-\usepackage{hyperref}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage{float}
+
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 \usepackage{caption}
 \captionsetup{font=footnotesize}
@@ -29,6 +32,7 @@
 \newtheorem{lemma}{Лемма}[subsection]
 \newcommand{\lemmaautorefname}{лемм.}
 \numberwithin{equation}{subsection}
+
 
 \def\ci{\perp\!\!\!\perp}
 
@@ -66,6 +70,9 @@
 
 \newpage
 
+\input{introduction.tex}
+
+\newpage
 \section{Теоретическая часть}
 
 \input{bernoulli}
