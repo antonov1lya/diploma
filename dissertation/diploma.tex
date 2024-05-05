@@ -33,6 +33,10 @@
 \newcommand{\lemmaautorefname}{лемм.}
 \numberwithin{equation}{subsection}
 
+\usepackage{enumitem}
+
+\setlist[enumerate]{leftmargin=*}
+\setlist[itemize]{leftmargin=*}
 
 \def\ci{\perp\!\!\!\perp}
 
@@ -90,11 +94,14 @@
 
 \newpage
 
-\section{Практическая часть}
+\section{Экспериментальная часть}
 
 \input{realization.tex}
 
 \input{numerical.tex}
+
+\newpage
+\input{conclusion.tex}
 
 % % библиография
 \newpage
