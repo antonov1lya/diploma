@@ -1,326 +1,438 @@
-\newpage
-\subsection{Проверка условной независимости по подвыборкам из условных распределений}\label{twos}
+\subsection{Процедура проверки условной независимости}
 
-Приведем трактовку \autoref{cond_ind_def} для трехмерного
-распределения Бернулли. 
-\begin{definition}\label{new_def}
-    В трехмерном распределении Бернулли случайные величины $X$ и $Y$
-    условно независимы при условии $Z$, 
-    если выполнены следующие условия:
-    \begin{itemize}
-        \item $X$ и $Y$ независимы при условии $Z=0$
-        \item $X$ и $Y$  независимы при условии $Z=1$
-    \end{itemize}
-\end{definition}
-Используя \autoref{new_def}, сформулируем индивидуальные гипотезы:
-\begin{itemize}
-    \item $H_0 : X$ и $Y$ независимы при условии $Z=0$
-    \item $H_1 : X$ и $Y$ независимы при условии $Z=1$
-\end{itemize}
-Тогда гипотеза об условной независимости имеет вид 
-$H = H_0 \cap H_1$. Естественным образом, гипотезу 
-$H_0$ необходимо проверять по наблюдениям
-$(x_i,y_i,z_i)^T$, в которых $z_i=0$. Поскольку $(X,Y)^T$ при условии
-$Z=z$ имеет двумерное распределение Бернулли, то
-в качестве теста для $H_0$ можно использовать
-$\varphi_0 = \varphi^{\text{Independence}}_0$, 
-приведенный в \autoref{bivariate_umpu}. Аналогичные рассуждения 
-справедливы и для гипотезы $H_1$. Учитывая озвученные соображения,
-построим тест проверки гипотезы $H$, контролирующий вероятность
-ошибки первого рода на уровне $\alpha$.
-Пусть
+Пусть $(X,Y,Z)^T$ -- случайный вектор, имеющий трехмерное распределение
+Бернулли, а
 $$
 \begin{pmatrix}
-        X_1 \\
-        Y_1 \\
-        Z_1
+        x_1 \\
+        y_1 \\
+        z_1
     \end{pmatrix},
     \begin{pmatrix}
-        X_2 \\
-        Y_2 \\
-        Z_2
+        x_2 \\
+        y_2 \\
+        z_2
     \end{pmatrix}, \ldots,
     \begin{pmatrix}
-        X_n \\
-        Y_n \\
-        Z_n
+        x_n \\
+        y_n \\
+        z_n
     \end{pmatrix}
-$$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$. Обозначим $\mathbf{Z}=(Z_1,\ldots,Z_n)$ и 
-$\mathbf{z}=(z_1,\ldots,z_n)$.
-Покажем, что в условном распределении при $\mathbf{Z}=\mathbf{z}$ наблюдения
-$$
-\Xi = 
-\begin{pmatrix}
-        X_1 \\
-        Y_1
-    \end{pmatrix},
-    \begin{pmatrix}
-        X_2 \\
-        Y_2
-    \end{pmatrix}, \ldots,
-    \begin{pmatrix}
-        X_n \\
-        Y_n
-    \end{pmatrix}
-$$
-являются независимыми. 
+$$ реализация повторной выборки из распределения $(X,Y,Z)^T$.
 
-\begin{lemma}\label{ci_for_samples}
-    $$
-    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z})=
-    $$
-    $$
-    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
-    $$
-\end{lemma}
-\begin{proof}
-    С одной стороны:
-    $$
-    P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
-    $$
-    $$
-    =P(\mathbf{Z}=\mathbf{z}) P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z}) 
-    $$
-    С другой стороны:
-    $$
-    P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
-    $$
-    $$
-    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i, Z_i=z_i)=
-    $$
-    $$
-    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_i=z_i)P(Z_i=z_i)=
-    $$
-    $$
-    =P(\mathbf{Z}=\mathbf{z})\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
-    $$
-\end{proof}
-
-Пусть также $\mathbf{Z}=\mathbf{z}$ фиксированы. 
-Разобьем выборку $\Xi$ на две подвыборки $\Xi_0$ и $\Xi_1$, 
-такие что:
-$$
-\Xi_0=
-\begin{pmatrix}
-    X_{i_1} \\
-    Y_{i_1} \\
-\end{pmatrix},
-\begin{pmatrix}
-    X_{i_2} \\
-    Y_{i_2} \\
-\end{pmatrix}, \ldots,
-\begin{pmatrix}
-    X_{i_{n_0}} \\
-    Y_{i_{n_0}} \\
-\end{pmatrix} 
-$$
-где $Z_{i_k}=z_{i_k}=0$ для всех $i_k$ при $k=\overline{1,n_0}$ и $$
-\Xi_1=
-\begin{pmatrix}
-    X_{j_1} \\
-    Y_{j_1} \\
-\end{pmatrix},
-\begin{pmatrix}
-    X_{j_2} \\
-    Y_{j_2} \\
-\end{pmatrix}, \ldots,
-\begin{pmatrix}
-    X_{j_{n_1}} \\
-    Y_{j_{n_1}} \\
-\end{pmatrix} 
-$$
-где $Z_{j_k}=z_{j_k}=1$ для всех $j_k$ при $k=\overline{1,n_1}$. 
-Причем $n=n_0+n_1$. Отметим, что
-разбиение $\Xi = \Xi_0 \sqcup \Xi_1$ определяется лишь набором
-$\mathbf{Z}=\mathbf{z}$.
-
-Сформулируем следующую теорему.
-
-\begin{theorem}
-    Пусть $\mathbf{Z}=\mathbf{z}$ -- фиксированы. Тогда выборка $\Xi_0$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=0$.
-\end{theorem}
-\begin{proof}
-    По \autoref{ci_for_samples}:
-    $$
-    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z})=
-    $$
-    $$
-    =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
-    $$
-    Просуммировав обе части вышепредставленного равенства по всем возможным значениям 
-    $x_{j_1}, y_{j_1}, \ldots, x_{j_{n_1}},y_{j_{n_1}}$ получаем:
-    $$
-    P(X_{i_1}=x_{i_1},Y_{i_1}=y_{i_1},\ldots,X_{i_{n_0}}=x_{i_{n_0}},Y_{i_{n_0}}=y_{i_{n_0}} \mid \mathbf{Z}=\mathbf{z})=
-    $$
-    $$
-    =\prod_{k=1}^{n_0} P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid \mathbf{Z}=\mathbf{z})
-    $$
-    Значит $$
-    \Xi_0=
-    \begin{pmatrix}
-        X_{i_1} \\
-        Y_{i_1} \\
-    \end{pmatrix},
-    \begin{pmatrix}
-        X_{i_2} \\
-        Y_{i_2} \\
-    \end{pmatrix}, \ldots,
-    \begin{pmatrix}
-        X_{i_{n_0}} \\
-        Y_{i_{n_0}} \\
-    \end{pmatrix} 
-    $$
-    независимые наблюдения при условии $\mathbf{Z}=\mathbf{z}$.
-
-    Покажем, что $(X_{i_k},Y_{i_k})^T$ при условии $\mathbf{Z}=\mathbf{z}$ распределен также как и 
-    $(X,Y)^T$ при условии $Z=0$.
-    $$
-    P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid \mathbf{Z}=\mathbf{z}) =
-    P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid Z_{i_k}=z_{i_k}) = $$
-    $$=P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid Z_{i_{k}}=0)=
-    P(X=x_{i_k}, Y=y_{i_k} \mid Z=0)$$
-\end{proof}
-
-Аналогично показывается, что $\Xi_1$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=1$.
-
-Сформулируем теорему.
-\begin{theorem}\label{main_theorem}
-    Пусть $\Xi_0$ и $\Xi_1$ -- подвыборки, полученные разбиением случайной выборки $\Xi$.
-    Пусть $\varphi_0$ и $\varphi_1$ -- рандомизированные тесты 
-    проверки гипотез $H_0$ и $H_1$ по повторным выборкам 
-    $\Xi_0$ и $\Xi_1$ соответственно.
-    Введем события:
-    $$A_0 = \{\text{отвергнуть гипотезу $H_0$ рандомизированным тестом $\varphi_0$}\}$$ 
-    $$A_1 = \{\text{отвергнуть гипотезу $H_1$ рандомизированным тестом $\varphi_1$}\}$$
-    Пусть $\varphi_0$ и $\varphi_1$ тесты уровня $\alpha_0$ и $\alpha_1$
-    при любом объеме наблюдений в подвыборках $\Xi_0$ и $\Xi_1$ соответственно, то есть:
-    $$P_{H_0\cap H_1,\mathbf{Z=z}}(A_0)=\alpha_0$$ 
-    $$P_{H_0\cap H_1,\mathbf{Z=z}}(A_1)=\alpha_1$$
-    Тогда $P_{H_0\cap H_1}(A_0 \cap A_1)= P_{H_0\cap H_1}(A_0) P_{H_0\cap H_1}(A_1)$.
-\end{theorem}
-\begin{proof}
-    Пусть $\mathbf{Z}=\mathbf{z}$ фиксировано. 
-    Обозначим через
-    $$T_0=(X_{i_1},Y_{i_1},\ldots,X_{i_{n_0}},Y_{i_{n_0}})^T, \;
-    T_1=(X_{j_1},Y_{j_1},\ldots,X_{j_{n_1}},Y_{j_{n_1}})^T$$
-    случайные векторы наблюдений, используемые в тестах $\varphi_0$ и 
-    $\varphi_1$ соответственно.
-    Распишем следующую вероятность
-    $$
-    P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1)=
-    $$
-    $$
-    =\sum_{t_0}\sum_{t_1} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
-    $$
-    Отметим, что $P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
-    для того, чтобы при известных значениях статистик $t_0$ и $t_1$ отвергнуть гипотезы $H_0$ и $H_1$, в рандомизированном тесте нужно провести два испытания с вероятностью успеха
-    $\varphi_0(t_0)$ и $\varphi_1(t_1)$. Постулируется, что такие испытания независимые. Тогда:
-    $$
-    P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
-    $$
-    $$
-    =\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0)P_{H_0\cap H_1,\mathbf{Z=z}}(T_1=t_1)=
-    $$
-    $$
-    =\sum_{t_0}\left[ \varphi_0(t_0) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0) \left(\sum_{t_1}\varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_1=t_1)\right)\right]=
-    $$
-    $$
-    = \sum_{t_0} \varphi_0(t_0) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0) \alpha_1 
-    =\alpha_0 \alpha_1
-    $$
-    По формуле полной вероятности:
-    $$
-    P_{H_0\cap H_1}(A_0) = \sum_{\mathbf{z}} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0) P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})
-    = \sum_{\mathbf{z}} \alpha_0 P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})=\alpha_0
-    $$
-    Аналогично, $P_{H_0\cap H_1}(A_1)=\alpha_1$. Также по формуле полной вероятности:
-    $$
-    P_{H_0\cap H_1}(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1) P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})=
-    $$
-    $$
-    = \sum_{\mathbf{z}} \alpha_0 \alpha_1 P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})
-    = \alpha_0 \alpha_1
-    $$
-    Таким образом, $P_{H_0\cap H_1}(A_0 \cap A_1)=P_{H_0\cap H_1}(A_0) P_{H_0\cap H_1}(A_1)=\alpha_0 \alpha_1$.
-\end{proof}
-Применим \autoref{main_theorem} для проверки условной независимости в трехмерном
-распределении Бернулли.
-Положим индивидуальные гипотезы:
+Предложим процедуру проверки условной независимости.
 \begin{itemize}
-    \item $H_0 : X$ и $Y$ независимы при условии $Z=0$
-    \item $H_1 : X$ и $Y$ независимы при условии $Z=1$
-\end{itemize}
-Для проверки гипотез $H_0$ и $H_1$ будем использовать тесты
-$\varphi_0 = \varphi^{\text{Independence}}_0$ и 
-$\varphi_1 = \varphi^{\text{Independence}}_1$ уровня $\alpha_0$ и $\alpha_1$ 
-по повторным выборкам
-$\Xi_0$ и $\Xi_1$ соответственно.
-Тогда гипотеза
-об условной независимости имеет вид $H = H_0 \cap H_1$ и тест проверки условной независимости можно определить как:
+    \item Разобьем исходную выборку на две подвыборки:
+    $$
+    \begin{pmatrix}
+            x_{i_1} \\
+            y_{i_1} \\
+            0
+        \end{pmatrix},
+        \begin{pmatrix}
+            x_{i_2} \\
+            y_{i_2} \\
+            0
+        \end{pmatrix}, \ldots,
+        \begin{pmatrix}
+            x_{i_{n_0}} \\
+            y_{i_{n_0}} \\
+            0
+        \end{pmatrix}
+    \text{ и }
+    \begin{pmatrix}
+            x_{j_1} \\
+            y_{j_1} \\
+            1
+        \end{pmatrix},
+        \begin{pmatrix}
+            x_{j_2} \\
+            y_{j_2} \\
+            1
+        \end{pmatrix}, \ldots,
+        \begin{pmatrix}
+            x_{j_{n_1}} \\
+            y_{j_{n_1}} \\
+            1
+        \end{pmatrix}
+    $$
+    \item По наблюдениям 
+    $$
+    \begin{pmatrix}
+        x_{i_1} \\
+        y_{i_1} 
+    \end{pmatrix},
+    \begin{pmatrix}
+        x_{i_2} \\
+        y_{i_2}
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        x_{i_{n_0}} \\
+        y_{i_{n_0}}
+    \end{pmatrix}
+    $$
+тестом $\varphi_0=\varphi^{\text{Independence}}_0$ уровня $\gamma$
+проверим гипотезу $H_0 : X$ и $Y$ независимы при условии $Z=0$.
+Если подвыборка не содержит наблюдений, то применяем тест 
+$\varphi \equiv \gamma$.
+\item По наблюдениям 
+    $$
+    \begin{pmatrix}
+        x_{j_1} \\
+        y_{j_1} 
+    \end{pmatrix},
+    \begin{pmatrix}
+        x_{j_2} \\
+        y_{j_2}
+    \end{pmatrix}, \ldots,
+    \begin{pmatrix}
+        x_{j_{n_1}} \\
+        y_{j_{n_1}}
+    \end{pmatrix}
+    $$
+тестом $\varphi_1=\varphi^{\text{Independence}}_1$ уровня $\gamma$
+проверим гипотезу $H_1 : X$ и $Y$ независимы при условии $Z=1$.
+Если подвыборка не содержит наблюдений, то применяем тест 
+$\varphi \equiv \gamma$.
+\item Обозначим события:
+$$A_0 = \{\text{гипотеза $H_0$ отвергнута}\},\;
+A_1 = \{\text{гипотеза $H_1$ отвергнута}\}$$
+Для проверки гипотезы $H: X \ci Y \mid Z$ используем тест:
 $$
 \varphi^{\text{Subsamples}}=\begin{cases}
     1, \text{ наступило событие $A_0 \cup A_1$}\\
     0, \text{ иначе}
 \end{cases}
 $$
-Пусть далее $\alpha_0 = \alpha_1 = \gamma$.
-Тогда $$P_{H_0\cap H_1}(\varphi^{\text{Subsamples}}=1)=P_{H_0\cap H_1}(A_0 \cup A_1)=$$ 
-$$ = P_{H_0\cap H_1}(A_0) + P_{H_0\cap H_1}(A_1) - 
-P_{H_0\cap H_1}(A_0 \cap A_1) = 2\gamma - \gamma^2$$
-Нетрудно проверить, что для контроля $P_{H_0\cap H_1}(\varphi^{\text{Subsamples}}=1)=\alpha$ достаточно положить
-уровень значимости $\gamma = 1 - \sqrt{1-\alpha}$ на
-тестах проверки индивидуальных гипотез $H_0$ и $H_1$.
+\end{itemize}
+Очевидно, что при истинности гипотезы $H: X \ci Y \mid Z$
+события $A_0$ и $A_1$ независимые. Поэтому для контроля
+$P_{H}(\varphi^{\text{Subsamples}}=1)=\alpha$ достаточно положить
+$\gamma = 1 - \sqrt{1-\alpha}$.
 
-Покажем, что тест $\varphi^{\text{Subsamples}}$ является несмещенным.
-\begin{theorem}\label{unbias}
-    Тест $\varphi^{\text{Subsamples}}$
-    уровня $\alpha$
-    проверки гипотезы 
-    $H: X \ci Y \mid Z$ является несмещенным.
-\end{theorem}
-\begin{proof}
-    Положим $\Theta_{H}=\{\theta: p_{000}p_{110}=p_{010}p_{100}
-    \text{ и } p_{001}p_{111}=p_{011}p_{101}\}$, 
-    $\Theta_{K}=\{\theta: p_{000}p_{110}\neq p_{010}p_{100}
-    \text{ или } p_{001}p_{111}\neq p_{011}p_{101}\}$.
+% \newpage
+% \subsection{Проверка условной независимости по подвыборкам из условных распределений}\label{twos}
 
-    Отметим, что $\varphi_0 = \varphi^{\text{Independence}}_0$ и
-    $\varphi_1 = \varphi^{\text{Independence}}_1$ -- несмещенные тесты
-    проверки гипотез  $H_0$ и $H_1$ уровня $\gamma$
-    соответственно. Причем, при истинности гипотез $H_0$
-    и $H_1$ на тестах $\varphi_0$ и $\varphi_1$ вероятность ошибки
-    первого рода в точности равна $\gamma$.
-    Поэтому,
-    $E_{\theta}(\varphi_0) = P_\theta(A_0)\geq \gamma$ и $E_{\theta}(\varphi_1) = P_\theta(A_1)\geq \gamma$ для любого
-    $\theta \in \Theta_{H} \cup \Theta_{K}$.
+% Приведем трактовку \autoref{cond_ind_def} для трехмерного
+% распределения Бернулли. 
+% \begin{definition}\label{new_def}
+%     В трехмерном распределении Бернулли случайные величины $X$ и $Y$
+%     условно независимы при условии $Z$, 
+%     если выполнены следующие условия:
+%     \begin{itemize}
+%         \item $X$ и $Y$ независимы при условии $Z=0$
+%         \item $X$ и $Y$  независимы при условии $Z=1$
+%     \end{itemize}
+% \end{definition}
+% Используя \autoref{new_def}, сформулируем индивидуальные гипотезы:
+% \begin{itemize}
+%     \item $H_0 : X$ и $Y$ независимы при условии $Z=0$
+%     \item $H_1 : X$ и $Y$ независимы при условии $Z=1$
+% \end{itemize}
+% Тогда гипотеза об условной независимости имеет вид 
+% $H = H_0 \cap H_1$. Естественным образом, гипотезу 
+% $H_0$ необходимо проверять по наблюдениям
+% $(x_i,y_i,z_i)^T$, в которых $z_i=0$. Поскольку $(X,Y)^T$ при условии
+% $Z=z$ имеет двумерное распределение Бернулли, то
+% в качестве теста для $H_0$ можно использовать
+% $\varphi_0 = \varphi^{\text{Independence}}_0$, 
+% приведенный в \autoref{bivariate_umpu}. Аналогичные рассуждения 
+% справедливы и для гипотезы $H_1$. Учитывая озвученные соображения,
+% построим тест проверки гипотезы $H$, контролирующий вероятность
+% ошибки первого рода на уровне $\alpha$.
+% Пусть
+% $$
+% \begin{pmatrix}
+%         X_1 \\
+%         Y_1 \\
+%         Z_1
+%     \end{pmatrix},
+%     \begin{pmatrix}
+%         X_2 \\
+%         Y_2 \\
+%         Z_2
+%     \end{pmatrix}, \ldots,
+%     \begin{pmatrix}
+%         X_n \\
+%         Y_n \\
+%         Z_n
+%     \end{pmatrix}
+% $$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$. Обозначим $\mathbf{Z}=(Z_1,\ldots,Z_n)$ и 
+% $\mathbf{z}=(z_1,\ldots,z_n)$.
+% Покажем, что в условном распределении при $\mathbf{Z}=\mathbf{z}$ наблюдения
+% $$
+% \Xi = 
+% \begin{pmatrix}
+%         X_1 \\
+%         Y_1
+%     \end{pmatrix},
+%     \begin{pmatrix}
+%         X_2 \\
+%         Y_2
+%     \end{pmatrix}, \ldots,
+%     \begin{pmatrix}
+%         X_n \\
+%         Y_n
+%     \end{pmatrix}
+% $$
+% являются независимыми. 
 
-    Пусть $\theta \in \Theta_{H}$, тогда
-    $E_{\theta}(\varphi^{\text{Subsamples}}) =
-    P_{\theta}(\varphi^{\text{Subsamples}}=1) = \alpha$ поскольку
-    $\varphi^{\text{Subsamples}}$ тест уровня $\alpha$.
+% \begin{lemma}\label{ci_for_samples}
+%     $$
+%     P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z})=
+%     $$
+%     $$
+%     =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
+%     $$
+% \end{lemma}
+% \begin{proof}
+%     С одной стороны:
+%     $$
+%     P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+%     $$
+%     $$
+%     =P(\mathbf{Z}=\mathbf{z}) P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z}) 
+%     $$
+%     С другой стороны:
+%     $$
+%     P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+%     $$
+%     $$
+%     =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i, Z_i=z_i)=
+%     $$
+%     $$
+%     =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid Z_i=z_i)P(Z_i=z_i)=
+%     $$
+%     $$
+%     =P(\mathbf{Z}=\mathbf{z})\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
+%     $$
+% \end{proof}
 
-    Пусть $\theta \in \Theta_{K}$.
-    Как и в доказательстве \autoref{main_theorem} можно показать, что
-    $P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cap A_1)=
-    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0)
-    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1)$.
-    Следовательно: 
-    $$P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cup A_1) 
-    = P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0) +
-    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1) - 
-    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0)
-    P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1) 
-    \geq \gamma + \gamma - \gamma^2 = \alpha
-    $$
-    Тогда:
-    $$
-    E_{\theta}(\varphi^{\text{Subsamples}}) =
-    P_{\theta}(\varphi^{\text{Subsamples}}=1)=
-    P_{\theta}(A_0 \cup A_1)=
-    $$
-    $$
-    =\sum_{\mathbf{z}} P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cup A_1)P_{\theta}(\mathbf{Z}=\mathbf{z}) \geq
-    \sum_{\mathbf{z}} \alpha P_{\theta}(\mathbf{Z}=\mathbf{z}) = \alpha
-    $$
+% Пусть также $\mathbf{Z}=\mathbf{z}$ фиксированы. 
+% Разобьем выборку $\Xi$ на две подвыборки $\Xi_0$ и $\Xi_1$, 
+% такие что:
+% $$
+% \Xi_0=
+% \begin{pmatrix}
+%     X_{i_1} \\
+%     Y_{i_1} \\
+% \end{pmatrix},
+% \begin{pmatrix}
+%     X_{i_2} \\
+%     Y_{i_2} \\
+% \end{pmatrix}, \ldots,
+% \begin{pmatrix}
+%     X_{i_{n_0}} \\
+%     Y_{i_{n_0}} \\
+% \end{pmatrix} 
+% $$
+% где $Z_{i_k}=z_{i_k}=0$ для всех $i_k$ при $k=\overline{1,n_0}$ и $$
+% \Xi_1=
+% \begin{pmatrix}
+%     X_{j_1} \\
+%     Y_{j_1} \\
+% \end{pmatrix},
+% \begin{pmatrix}
+%     X_{j_2} \\
+%     Y_{j_2} \\
+% \end{pmatrix}, \ldots,
+% \begin{pmatrix}
+%     X_{j_{n_1}} \\
+%     Y_{j_{n_1}} \\
+% \end{pmatrix} 
+% $$
+% где $Z_{j_k}=z_{j_k}=1$ для всех $j_k$ при $k=\overline{1,n_1}$. 
+% Причем $n=n_0+n_1$. Отметим, что
+% разбиение $\Xi = \Xi_0 \sqcup \Xi_1$ определяется лишь набором
+% $\mathbf{Z}=\mathbf{z}$.
+
+% Сформулируем следующую теорему.
+
+% \begin{theorem}
+%     Пусть $\mathbf{Z}=\mathbf{z}$ -- фиксированы. Тогда выборка $\Xi_0$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=0$.
+% \end{theorem}
+% \begin{proof}
+%     По \autoref{ci_for_samples}:
+%     $$
+%     P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n \mid \mathbf{Z}=\mathbf{z})=
+%     $$
+%     $$
+%     =\prod_{i=1}^n P(X_i=x_i, Y_i=y_i \mid \mathbf{Z}=\mathbf{z})
+%     $$
+%     Просуммировав обе части вышепредставленного равенства по всем возможным значениям 
+%     $x_{j_1}, y_{j_1}, \ldots, x_{j_{n_1}},y_{j_{n_1}}$ получаем:
+%     $$
+%     P(X_{i_1}=x_{i_1},Y_{i_1}=y_{i_1},\ldots,X_{i_{n_0}}=x_{i_{n_0}},Y_{i_{n_0}}=y_{i_{n_0}} \mid \mathbf{Z}=\mathbf{z})=
+%     $$
+%     $$
+%     =\prod_{k=1}^{n_0} P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid \mathbf{Z}=\mathbf{z})
+%     $$
+%     Значит $$
+%     \Xi_0=
+%     \begin{pmatrix}
+%         X_{i_1} \\
+%         Y_{i_1} \\
+%     \end{pmatrix},
+%     \begin{pmatrix}
+%         X_{i_2} \\
+%         Y_{i_2} \\
+%     \end{pmatrix}, \ldots,
+%     \begin{pmatrix}
+%         X_{i_{n_0}} \\
+%         Y_{i_{n_0}} \\
+%     \end{pmatrix} 
+%     $$
+%     независимые наблюдения при условии $\mathbf{Z}=\mathbf{z}$.
+
+%     Покажем, что $(X_{i_k},Y_{i_k})^T$ при условии $\mathbf{Z}=\mathbf{z}$ распределен также как и 
+%     $(X,Y)^T$ при условии $Z=0$.
+%     $$
+%     P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid \mathbf{Z}=\mathbf{z}) =
+%     P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid Z_{i_k}=z_{i_k}) = $$
+%     $$=P(X_{i_k}=x_{i_k}, Y_{i_k}=y_{i_k} \mid Z_{i_{k}}=0)=
+%     P(X=x_{i_k}, Y=y_{i_k} \mid Z=0)$$
+% \end{proof}
+
+% Аналогично показывается, что $\Xi_1$ является повторной выборкой из распределения $(X,Y)^T$ при условии $Z=1$.
+
+% Сформулируем теорему.
+% \begin{theorem}\label{main_theorem}
+%     Пусть $\Xi_0$ и $\Xi_1$ -- подвыборки, полученные разбиением случайной выборки $\Xi$.
+%     Пусть $\varphi_0$ и $\varphi_1$ -- рандомизированные тесты 
+%     проверки гипотез $H_0$ и $H_1$ по повторным выборкам 
+%     $\Xi_0$ и $\Xi_1$ соответственно.
+%     Введем события:
+%     $$A_0 = \{\text{отвергнуть гипотезу $H_0$ рандомизированным тестом $\varphi_0$}\}$$ 
+%     $$A_1 = \{\text{отвергнуть гипотезу $H_1$ рандомизированным тестом $\varphi_1$}\}$$
+%     Пусть $\varphi_0$ и $\varphi_1$ тесты уровня $\alpha_0$ и $\alpha_1$
+%     при любом объеме наблюдений в подвыборках $\Xi_0$ и $\Xi_1$ соответственно, то есть:
+%     $$P_{H_0\cap H_1,\mathbf{Z=z}}(A_0)=\alpha_0$$ 
+%     $$P_{H_0\cap H_1,\mathbf{Z=z}}(A_1)=\alpha_1$$
+%     Тогда $P_{H_0\cap H_1}(A_0 \cap A_1)= P_{H_0\cap H_1}(A_0) P_{H_0\cap H_1}(A_1)$.
+% \end{theorem}
+% \begin{proof}
+%     Пусть $\mathbf{Z}=\mathbf{z}$ фиксировано. 
+%     Обозначим через
+%     $$T_0=(X_{i_1},Y_{i_1},\ldots,X_{i_{n_0}},Y_{i_{n_0}})^T, \;
+%     T_1=(X_{j_1},Y_{j_1},\ldots,X_{j_{n_1}},Y_{j_{n_1}})^T$$
+%     случайные векторы наблюдений, используемые в тестах $\varphi_0$ и 
+%     $\varphi_1$ соответственно.
+%     Распишем следующую вероятность
+%     $$
+%     P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1)=
+%     $$
+%     $$
+%     =\sum_{t_0}\sum_{t_1} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)
+%     $$
+%     Отметим, что $P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1 \mid T_0=t_0, T_1=t_1)=\varphi_0(t_0)\varphi_1(t_1)$, поскольку
+%     для того, чтобы при известных значениях статистик $t_0$ и $t_1$ отвергнуть гипотезы $H_0$ и $H_1$, в рандомизированном тесте нужно провести два испытания с вероятностью успеха
+%     $\varphi_0(t_0)$ и $\varphi_1(t_1)$. Постулируется, что такие испытания независимые. Тогда:
+%     $$
+%     P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1)=\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0, T_1=t_1)=
+%     $$
+%     $$
+%     =\sum_{t_0}\sum_{t_1} \varphi_0(t_0) \varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0)P_{H_0\cap H_1,\mathbf{Z=z}}(T_1=t_1)=
+%     $$
+%     $$
+%     =\sum_{t_0}\left[ \varphi_0(t_0) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0) \left(\sum_{t_1}\varphi_1(t_1) P_{H_0\cap H_1,\mathbf{Z=z}}(T_1=t_1)\right)\right]=
+%     $$
+%     $$
+%     = \sum_{t_0} \varphi_0(t_0) P_{H_0\cap H_1,\mathbf{Z=z}}(T_0=t_0) \alpha_1 
+%     =\alpha_0 \alpha_1
+%     $$
+%     По формуле полной вероятности:
+%     $$
+%     P_{H_0\cap H_1}(A_0) = \sum_{\mathbf{z}} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0) P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})
+%     = \sum_{\mathbf{z}} \alpha_0 P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})=\alpha_0
+%     $$
+%     Аналогично, $P_{H_0\cap H_1}(A_1)=\alpha_1$. Также по формуле полной вероятности:
+%     $$
+%     P_{H_0\cap H_1}(A_0 \cap A_1) = \sum_{\mathbf{z}} P_{H_0\cap H_1,\mathbf{Z=z}}(A_0 \cap A_1) P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})=
+%     $$
+%     $$
+%     = \sum_{\mathbf{z}} \alpha_0 \alpha_1 P_{H_0\cap H_1}(\mathbf{Z}=\mathbf{z})
+%     = \alpha_0 \alpha_1
+%     $$
+%     Таким образом, $P_{H_0\cap H_1}(A_0 \cap A_1)=P_{H_0\cap H_1}(A_0) P_{H_0\cap H_1}(A_1)=\alpha_0 \alpha_1$.
+% \end{proof}
+% Применим \autoref{main_theorem} для проверки условной независимости в трехмерном
+% распределении Бернулли.
+% Положим индивидуальные гипотезы:
+% \begin{itemize}
+%     \item $H_0 : X$ и $Y$ независимы при условии $Z=0$
+%     \item $H_1 : X$ и $Y$ независимы при условии $Z=1$
+% \end{itemize}
+% Для проверки гипотез $H_0$ и $H_1$ будем использовать тесты
+% $\varphi_0 = \varphi^{\text{Independence}}_0$ и 
+% $\varphi_1 = \varphi^{\text{Independence}}_1$ уровня $\alpha_0$ и $\alpha_1$ 
+% по повторным выборкам
+% $\Xi_0$ и $\Xi_1$ соответственно.
+% Тогда гипотеза
+% об условной независимости имеет вид $H = H_0 \cap H_1$ и тест проверки условной независимости можно определить как:
+% $$
+% \varphi^{\text{Subsamples}}=\begin{cases}
+%     1, \text{ наступило событие $A_0 \cup A_1$}\\
+%     0, \text{ иначе}
+% \end{cases}
+% $$
+% Пусть далее $\alpha_0 = \alpha_1 = \gamma$.
+% Тогда $$P_{H_0\cap H_1}(\varphi^{\text{Subsamples}}=1)=P_{H_0\cap H_1}(A_0 \cup A_1)=$$ 
+% $$ = P_{H_0\cap H_1}(A_0) + P_{H_0\cap H_1}(A_1) - 
+% P_{H_0\cap H_1}(A_0 \cap A_1) = 2\gamma - \gamma^2$$
+% Нетрудно проверить, что для контроля $P_{H_0\cap H_1}(\varphi^{\text{Subsamples}}=1)=\alpha$ достаточно положить
+% уровень значимости $\gamma = 1 - \sqrt{1-\alpha}$ на
+% тестах проверки индивидуальных гипотез $H_0$ и $H_1$.
+
+% Покажем, что тест $\varphi^{\text{Subsamples}}$ является несмещенным.
+% \begin{theorem}\label{unbias}
+%     Тест $\varphi^{\text{Subsamples}}$
+%     уровня $\alpha$
+%     проверки гипотезы 
+%     $H: X \ci Y \mid Z$ является несмещенным.
+% \end{theorem}
+% \begin{proof}
+%     Положим $\Theta_{H}=\{\theta: p_{000}p_{110}=p_{010}p_{100}
+%     \text{ и } p_{001}p_{111}=p_{011}p_{101}\}$, 
+%     $\Theta_{K}=\{\theta: p_{000}p_{110}\neq p_{010}p_{100}
+%     \text{ или } p_{001}p_{111}\neq p_{011}p_{101}\}$.
+
+%     Отметим, что $\varphi_0 = \varphi^{\text{Independence}}_0$ и
+%     $\varphi_1 = \varphi^{\text{Independence}}_1$ -- несмещенные тесты
+%     проверки гипотез  $H_0$ и $H_1$ уровня $\gamma$
+%     соответственно. Причем, при истинности гипотез $H_0$
+%     и $H_1$ на тестах $\varphi_0$ и $\varphi_1$ вероятность ошибки
+%     первого рода в точности равна $\gamma$.
+%     Поэтому,
+%     $E_{\theta}(\varphi_0) = P_\theta(A_0)\geq \gamma$ и $E_{\theta}(\varphi_1) = P_\theta(A_1)\geq \gamma$ для любого
+%     $\theta \in \Theta_{H} \cup \Theta_{K}$.
+
+%     Пусть $\theta \in \Theta_{H}$, тогда
+%     $E_{\theta}(\varphi^{\text{Subsamples}}) =
+%     P_{\theta}(\varphi^{\text{Subsamples}}=1) = \alpha$ поскольку
+%     $\varphi^{\text{Subsamples}}$ тест уровня $\alpha$.
+
+%     Пусть $\theta \in \Theta_{K}$.
+%     Как и в доказательстве \autoref{main_theorem} можно показать, что
+%     $P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cap A_1)=
+%     P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0)
+%     P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1)$.
+%     Следовательно: 
+%     $$P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cup A_1) 
+%     = P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0) +
+%     P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1) - 
+%     P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0)
+%     P_{\theta,\mathbf{Z}=\mathbf{z}}(A_1) 
+%     \geq \gamma + \gamma - \gamma^2 = \alpha
+%     $$
+%     Тогда:
+%     $$
+%     E_{\theta}(\varphi^{\text{Subsamples}}) =
+%     P_{\theta}(\varphi^{\text{Subsamples}}=1)=
+%     P_{\theta}(A_0 \cup A_1)=
+%     $$
+%     $$
+%     =\sum_{\mathbf{z}} P_{\theta,\mathbf{Z}=\mathbf{z}}(A_0 \cup A_1)P_{\theta}(\mathbf{Z}=\mathbf{z}) \geq
+%     \sum_{\mathbf{z}} \alpha P_{\theta}(\mathbf{Z}=\mathbf{z}) = \alpha
+%     $$
     
-\end{proof}
+% \end{proof}
