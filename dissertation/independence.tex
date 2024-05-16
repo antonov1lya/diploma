@@ -40,6 +40,10 @@
         \end{pmatrix}
     $$ и заданы $P(X=x,Y=y)=p_{xy} \geq 0,  \sum_{x=0}^1 \sum_{y=0}^1 p_{xy} =1$.
 \end{definition}
+Нами будут рассматриваться только случайные
+векторы $(X,Y)^T$ для которых $p_{xy} > 0$ при всех
+$x \in \{0,1\}$, $y\in \{0,1\}$.
+
 % Таким образом, $(X,Y)^T$ при условии $Z=z$ имеет двумерное распределении Бернулли.
 % Изложим теорию проверки независимости в двумерном распределении Бернулли,
 % которая в \autoref{twos} будет использована для проверки условной независимости.
@@ -73,7 +77,8 @@ $$\theta=\ln\left(\dfrac{p_{00}p_{11}}{p_{01}p_{10}}\right)=0$$
             x_n \\
             y_n
         \end{pmatrix}
-    $$ повторная выборка из распределения случайного вектора $(X,Y)^T$. Тогда:
+    $$
+    реализация повторной выборки из распределения случайного вектора $(X,Y)^T$. Тогда:
 $$
     P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n)
     =\prod_{i=1}^n P(X_i=x_i,Y_i=y_i) =
@@ -87,10 +92,9 @@ $$
     $$
     Обозначим 
     $$
-    U = \sum_{i=1}^n X_i Y_i,\;
-    T_1 = \sum_{i=1}^n X_i,\;
-    T_2 = \sum_{i=1}^n Y_i, \;
-    T=(T_1,T_2), \; t=(t_1,t_2)$$
+    u = \sum_{i=1}^n x_i y_i,\;
+    t_1 = \sum_{i=1}^n x_i,\;
+    t_2 = \sum_{i=1}^n y_i, \; t=(t_1,t_2)$$
     Согласно \cite{Lehmann1986} РНМН тест уровня $\alpha$ проверки гипотезы $H^{\text{Independence}}: \theta = 0$ против альтернативы $K^{\text{Independence}}: \theta \neq 0$ 
     имеет вид:
     $$
@@ -104,12 +108,12 @@ $$
     $$
     \begin{cases}
         E_{\theta=0}(\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha \\
-        E_{\theta=0}(U\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha E_{\theta=0}[U \mid T=t]
+        E_{\theta=0}(U\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha E_{\theta=0}(U \mid T=t)
     \end{cases}
     $$
     Приведем распределение статистики $U$ при условии $T=t$.
 \begin{lemma}\label{lm14}
-    Пусть $k_1(u)=u$, $k_2(u)=t_1-u$, $k_3(u)=t_2-u$,
+    Пусть $k_1(u)=u$, $k_2(u)=t_1-u$, $k_3(u)=t_2-u$,\\
     $k_4(u)=n-t_1-t_2+u$.
         Тогда
         $$P_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^4 k_i(u)!)^{-1}}

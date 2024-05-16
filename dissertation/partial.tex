@@ -15,7 +15,7 @@ $$\Sigma =
         \sigma_{ZX} & \sigma_{ZY} & \sigma_{ZZ}
     \end{pmatrix}
 $$
-где $\sigma_{XY}=E[(X-EX)(Y-EY)]$.
+где $\sigma_{XY}=E((X-EX)(Y-EY))$.
 Остатками от $X$ и $Y$ при регрессии на $Z$ называются случайные величины:
 $$
 X^{\prime}=(X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ)
@@ -31,7 +31,8 @@ $$
 Приведем соотношения, которые справедливы
 для $\rho^{XY \cdot Z}$ в произвольном распределении.
 \begin{lemma}
-    Пусть $(X,Y,Z)^T$ -- произвольный случайный вектор. Тогда:
+    Пусть $(X,Y,Z)^T$ -- произвольный случайный вектор,
+    имеющий вторые моменты. Тогда:
     $$
     \rho^{XY \cdot Z}=\dfrac{\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}}{\sqrt{\sigma_{XX}\sigma_{ZZ}-
         \sigma_{XZ}^2}\sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}}=\dfrac{\rho_{XY}-\rho_{XZ}\rho_{YZ}}{\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{YZ}^2}}
@@ -41,7 +42,7 @@ $$
         соответственно.
 \end{lemma}
 \begin{proof}
-    $$E(X^\prime Y^\prime)=E[((X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ))((Y-EY)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-EZ))]=$$
+    $$E(X^\prime Y^\prime)=E(((X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ))((Y-EY)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-EZ)))=$$
     $$=\sigma_{XY}-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}\sigma_{XZ}-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}\sigma_{YZ}+
     \dfrac{\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}\sigma_{ZZ}}\sigma_{ZZ}=\dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}$$
     Тогда:
@@ -211,13 +212,13 @@ $$  p_{xy*}=P(X=x, Y=y),\; p_{x*z}=P(X=x, Z=z), \; p_{*yz}=P(Y=y, Z=z)$$
     $$r^{XY\cdot Z}=\dfrac{r_{XY}-r_{XZ}r_{YZ}}{\sqrt{1-r_{XY}^2}\sqrt{1-r_{YZ}^2}}$$
     где $r_{XY}$, $r_{XZ}$, $r_{YZ}$ -- выборочные коэффициенты корреляции Пирсона
     между случайными величинами $X$ и $Y$, $X$ и $Z$, $Y$ и $Z$
-    соответственно
+    соответственно.
 \end{definition}
 Известно \cite{Anderson2003}, что 
 в трехмерном нормальном распределении
 при истинности гипотезы $H^{\text{Partial}}: \rho^{XY \cdot Z}=0$ статистика:
 $$
-t^{\text{Partial}}=\sqrt{n-3} \dfrac{r^{XY \cdot Z}}{\sqrt{1-(r^{XY \cdot Z})^2}}
+T^{\text{Partial}}=\sqrt{n-3} \dfrac{R^{XY \cdot Z}}{\sqrt{1-(R^{XY \cdot Z})^2}}
 $$
 имеет распределение Стьюдента с $n-3$ степенями свободы.
 Тогда тест уровня $\alpha$ проверки гипотезы $H^{\text{Partial}}:\rho^{XY\cdot Z}=0$

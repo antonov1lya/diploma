@@ -1,5 +1,5 @@
 \subsection{РНМН тест проверки 
-достаточного условия}\label{expon_form_section}
+достаточного условия зависимости}\label{expon_form_section}
 
 Запишем трехмерное распределение Бернулли в экспоненциальной форме:
 $$
@@ -59,21 +59,22 @@ $$
     экспоненциальном семействе. Пусть
     $$
         \begin{pmatrix}
-            X_1 \\
-            Y_1 \\
-            Z_1
+            x_1 \\
+            y_1 \\
+            z_1
         \end{pmatrix},
         \begin{pmatrix}
-            X_2 \\
-            Y_2 \\
-            Z_2
+            x_2 \\
+            y_2 \\
+            z_2
         \end{pmatrix}, \ldots,
         \begin{pmatrix}
-            X_n \\
-            Y_n \\
-            Z_n
+            x_n \\
+            y_n \\
+            z_n
         \end{pmatrix}
-    $$ повторная выборка из распределения случайного вектора $(X,Y,Z)^T$.
+    $$ реализация
+    повторной выборки  из распределения случайного вектора $(X,Y,Z)^T$.
     Совместное распределение повторной выборки имеет вид:
     $$
     P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
@@ -95,17 +96,17 @@ $$
         $$
     Пусть 
     $$
-        U = \sum_{i=1}^n X_i Y_i Z_i, \;
-        T_1 = \sum_{i=1}^n X_i Y_i, \;
-        T_2 = \sum_{i=1}^n X_i Z_i, \;
+        u = \sum_{i=1}^n x_i y_i z_i, \;
+        t_1 = \sum_{i=1}^n x_i y_i, \;
+        t_2 = \sum_{i=1}^n x_i z_i, \;
     $$
     $$
-        T_3 = \sum_{i=1}^n Y_i Z_i, \;
-        T_4 = \sum_{i=1}^n X_i, \;
-        T_5 = \sum_{i=1}^n Y_i, \;
-        T_6 = \sum_{i=1}^n Z_i \;
+        t_3 = \sum_{i=1}^n y_i z_i, \;
+        t_4 = \sum_{i=1}^n x_i, \;
+        t_5 = \sum_{i=1}^n y_i, \;
+        t_6 = \sum_{i=1}^n z_i, \;
+        t=(t_1,\ldots,t_6)
     $$
-    Обозначим $T=(T_1,\ldots,T_6)$, $t=(t_1,\ldots,t_6)$.
     Согласно \cite{Lehmann1986} РНМН тест уровня $\alpha$ проверки гипотезы $H^{\text{Theta}}:\theta=0$ против альтернативы $K^{\text{Theta}}:\theta \neq 0$ имеет вид:
     $$
     \varphi^{\text{Theta}}(u,t)=\begin{cases}
@@ -118,7 +119,7 @@ $$
     $$
     \begin{cases}
         E_{\theta=0}(\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha \\
-        E_{\theta=0}(U\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha E_{\theta=0}[U \mid T=t]
+        E_{\theta=0}(U\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha E_{\theta=0}(U \mid T=t)
     \end{cases}
     $$
     Приведем распределение статистики $U$ при условии $T=t$.      
