@@ -38,7 +38,7 @@
             1 \\
             1
         \end{pmatrix}
-    $$ и заданы $P(X=x,Y=y)=p_{xy} \geq 0,  \sum_{x=0}^1 \sum_{y=0}^1 p_{xy} =1$.
+    $$ и заданы $\Prb(X=x,Y=y)=p_{xy} \geq 0,  \sum_{x=0}^1 \sum_{y=0}^1 p_{xy} =1$.
 \end{definition}
 Нами будут рассматриваться только случайные
 векторы $(X,Y)^T$ с двумерным распределением Бернулли,
@@ -49,7 +49,7 @@ $x \in \{0,1\}$, $y\in \{0,1\}$.
 % которая в \autoref{twos} будет использована для проверки условной независимости.
 Запишем данное распределение в экспоненциальной форме:
 $$
-P(X=x,Y=y)=p_{00}^{(1-x)(1-y)}p_{01}^{(1-x)y}
+\Prb(X=x,Y=y)=p_{00}^{(1-x)(1-y)}p_{01}^{(1-x)y}
 p_{10}^{x(1-y)}p_{11}^{xy}=
 $$
 $$=\exp \left\{\ln(p_{00}) + 
@@ -83,8 +83,8 @@ $\theta=\ln\left(\dfrac{p_{00}p_{11}}{p_{01}p_{10}}\right)=0$.
     реализация повторной выборки из распределения случайного вектора $(X,Y)^T$.
     Совместное распределение повторной выборки имеет вид:
 $$
-    P(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n)
-    =\prod_{i=1}^n P(X_i=x_i,Y_i=y_i) =
+    \Prb(X_1=x_1,Y_1=y_1,\ldots,X_n=x_n,Y_n=y_n)
+    =\prod_{i=1}^n \Prb(X_i=x_i,Y_i=y_i) =
     $$
     $$
     =\exp \left\{ \ln(p_{00})n + 
@@ -110,8 +110,8 @@ $$
     где константы $C_i(t)$ и $\gamma_i(t)$ определяются из системы уравнений:
     $$
     \begin{cases}
-        E_{\theta=0}(\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha \\
-        E_{\theta=0}(U\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha E_{\theta=0}(U \mid T=t)
+        \E_{\theta=0}(\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha \\
+        \E_{\theta=0}(U\varphi^{\text{Independence}}(U,T) \mid T=t)=\alpha \E_{\theta=0}(U \mid T=t)
     \end{cases}
     $$
     Приведем распределение статистики $U$ при условии $T=t$.
@@ -119,7 +119,7 @@ $$
     Пусть $k_1(u)=u$, $k_2(u)=t_1-u$, $k_3(u)=t_2-u$,\\
     $k_4(u)=n-t_1-t_2+u$.
         Тогда
-        $$P_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^4 k_i(u)!)^{-1}}
+        $$\Prb_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^4 k_i(u)!)^{-1}}
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^4 k_i(s)!)^{-1}}$$
         где $\mathcal{D}=\{s \in \mathbb{Z}: 0\leq k_i(s) \leq n \text{ для всех } i=1\ldots,4\}$.
 \end{lemma}

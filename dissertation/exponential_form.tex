@@ -8,7 +8,7 @@ $p_{xyz}>0$ при всех
 $x \in \{0,1\}$, $y\in \{0,1\}$, $z\in \{0,1\}$.
 Запишем данное распределение в экспоненциальной форме:
 $$
-    P(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
+    \Prb(X=x,Y=y,Z=z) = p_{000}^{(1-x)(1-y)(1-z)} \ldots p_{111}^{x y z} =
 $$
 $$
     =
@@ -88,10 +88,10 @@ $$
     повторной выборки  из распределения случайного вектора $(X,Y,Z)^T$.
     Совместное распределение повторной выборки имеет вид:
     $$
-    P(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
+    \Prb(X_1=x_1,Y_1=y_1,Z_1=z_1,\ldots,X_n=x_n,Y_n=y_n,Z_n=z_n)=
     $$
     $$
-    =\prod_{i=1}^n P(X_i=x_i,Y_i=y_i,Z_i=z_i) =
+    =\prod_{i=1}^n \Prb(X_i=x_i,Y_i=y_i,Z_i=z_i) =
     $$
     $$
      =\exp \Biggl\{\ln(p_{000})n + \ln  \left(\dfrac{p_{001}p_{111}p_{010}p_{100}}{p_{011}p_{101}p_{000}p_{110}}\right) \sum_{i=1}^n x_i y_i z_i +
@@ -129,8 +129,8 @@ $$
     где константы $C_i(t)$ и $\gamma_i(t)$ определяются из системы уравнений:
     $$
     \begin{cases}
-        E_{\theta=0}(\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha \\
-        E_{\theta=0}(U\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha E_{\theta=0}(U \mid T=t)
+        \E_{\theta=0}(\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha \\
+        \E_{\theta=0}(U\varphi^{\text{Theta}}(U,T) \mid T=t)=\alpha \E_{\theta=0}(U \mid T=t)
     \end{cases}
     $$
     Приведем распределение статистики $U$ при условии $T=t$.      
@@ -138,23 +138,23 @@ $$
         Пусть $k_1(u)=u$, $k_2(u)=t_1-u$, $k_3(u)=t_2-u$, $k_4(u)=t_3-u$, $k_5(u)=t_4-t_1-t_2+u$, $k_6(u)=t_5-t_1-t_3+u$,
         $k_7(u)=t_6 - t_2 - t_3 + u$, $k_8(u)=n-u+t_1+t_2+t_3-t_4-t_5-t_6$.
         Тогда
-        $$P_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^8 k_i(u)!)^{-1}}
+        $$\Prb_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^8 k_i(u)!)^{-1}}
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^8 k_i(s)!)^{-1}}$$
         где $\mathcal{D}=\{s \in \mathbb{Z}: 0\leq k_i(s) \leq n \text{ для всех } i=1\ldots,8\}$.
     \end{lemma}
     \begin{proof}
         Найдем совместное распределение статистик $(U,T_1,\ldots,T_6)$:
         $$
-            P(U=u,T=t)=P(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=
+            \Prb(U=u,T=t)=\Prb(U=u, T_1=t_1, T_2=t_2, T_3=t_3, T_4=t_4, T_5=t_5, T_6=t_6)=
         $$
         $$
-            =P\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i=t_1, \sum_{i=1}^n X_i Z_i=t_2,\sum_{i=1}^n Y_i Z_i=t_3,
+            =\Prb\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i=t_1, \sum_{i=1}^n X_i Z_i=t_2,\sum_{i=1}^n Y_i Z_i=t_3,
             $$
             $$
             \sum_{i=1}^n X_i=t_4,\sum_{i=1}^n Y_i=t_5, \sum_{i=1}^n Z_i=t_6\biggr)=
         $$
         $$
-            =P\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i (1- Z_i)=t_1-u, \sum_{i=1}^n X_i (1-Y_i) Z_i=t_2-u,
+            =\Prb\biggl(\sum_{i=1}^n X_i Y_i Z_i=u, \sum_{i=1}^n X_i Y_i (1- Z_i)=t_1-u, \sum_{i=1}^n X_i (1-Y_i) Z_i=t_2-u,
         $$
         $$
             \sum_{i=1}^n (1-X_i) Y_i Z_i=t_3-u,
@@ -174,14 +174,14 @@ $$
             p_{000}^{n-u+t_1+t_2+t_3-t_4-t_5-t_6}
             $$
         Тогда условное распределение статистики $U$ при условии $T=t$ можно записать как:
-        $$P(U=u \mid T=t)=\dfrac{P(U=u,T=t)}{P(T=t)}=
-        \dfrac{P(U=u,T=t)}{\sum_{s \in \mathcal{D}} P(U=s,T=t)}=
+        $$\Prb(U=u \mid T=t)=\dfrac{\Prb(U=u,T=t)}{\Prb(T=t)}=
+        \dfrac{\Prb(U=u,T=t)}{\sum_{s \in \mathcal{D}} \Prb(U=s,T=t)}=
         $$
         $$
         =\dfrac{(\prod_{i=1}^8 k_i(u)!)^{-1} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^u}
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^8 k_i(s)!)^{-1} \left(\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}\right)^s}$$
         При истинности гипотезы $\theta=0$ справедливо равенство $\dfrac{p_{001}p_{010}p_{100}p_{111}}{p_{000}p_{011}p_{101}p_{110}}=1$. Следовательно:
-        $$P_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^8 k_i(u)!)^{-1}}
+        $$\Prb_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^8 k_i(u)!)^{-1}}
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^8 k_i(s)!)^{-1}}$$
     \end{proof}
     % Так как $\varphi^{\text{Theta}}$ является РНМН тестом, и

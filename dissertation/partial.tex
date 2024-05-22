@@ -6,33 +6,37 @@
 % Проверим, сохраняется ли это свойство в трехмерном распределении Бернулли.
 В данном разделе исследуем свойства частного коэффициента корреляции Пирсона
 в трехмерном распределении Бернулли.
-
-Для случайного вектора $(X,Y,Z)^T$ определим ковариационную матрицу:
-$$\Sigma =
+\begin{definition}
+    Пусть $(X,Y,Z)^T$ -- произвольный случайный
+    вектор. Ковариационной матрицей называется матрица:
+    $$\Sigma =
     \begin{pmatrix}
         \sigma_{XX} & \sigma_{XY} & \sigma_{XZ} \\
         \sigma_{YX} & \sigma_{YY} & \sigma_{YZ} \\
         \sigma_{ZX} & \sigma_{ZY} & \sigma_{ZZ}
     \end{pmatrix}
 $$
-где $\sigma_{XY}=E((X-EX)(Y-EY))$.
-Остатками от $X$ и $Y$ при регрессии на $Z$ называются случайные величины:
+где $\sigma_{XY}=\E((X-\E X)(Y-\E Y))$.
+\end{definition}
+\begin{definition}
+    Пусть $(X,Y,Z)^T$ -- произвольный случайный вектор.
+    Остатками от $X$ и $Y$ при регрессии на $Z$ называются случайные величины:
 $$
-X^{\prime}=(X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ)
+X^{\prime}=(X-\E X)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-\E Z)
 $$
 $$
-Y^{\prime}=(Y-EY)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-EZ)
+Y^{\prime}=(Y-\E Y)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-\E Z)
 $$
+\end{definition}
 Согласно работе \cite{Cramér1946}, частный коэффициент корреляции Пирсона определяется как коэффициент
 корреляции Пирсона между остатками, другими словами:
 $$
-\rho^{XY \cdot Z}=\dfrac{E(X^{\prime} Y^{\prime})}{\sqrt{E({X^{\prime}}^2) E({Y^{\prime}}^2)}}
+\rho^{XY \cdot Z}=\dfrac{\E(X^{\prime} Y^{\prime})}{\sqrt{\E({X^{\prime}}^2) \E({Y^{\prime}}^2)}}
 $$
 Приведем соотношения, которые справедливы
 для $\rho^{XY \cdot Z}$ в произвольном распределении.
 \begin{lemma}
-    Пусть $(X,Y,Z)^T$ -- произвольный случайный вектор,
-    имеющий вторые моменты. Тогда:
+    Пусть $(X,Y,Z)^T$ -- произвольный случайный вектор. Тогда:
     $$
     \rho^{XY \cdot Z}=\dfrac{\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}}{\sqrt{\sigma_{XX}\sigma_{ZZ}-
         \sigma_{XZ}^2}\sqrt{\sigma_{YY}\sigma_{ZZ}-\sigma_{YZ}^2}}=\dfrac{\rho_{XY}-\rho_{XZ}\rho_{YZ}}{\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{YZ}^2}}
@@ -40,12 +44,12 @@ $$
     где $\rho_{XY}=\dfrac{\sigma_{XY}}{\sqrt{\sigma_{XX}\sigma_{YY}}}$.
 \end{lemma}
 \begin{proof}
-    $$E(X^\prime Y^\prime)=E(((X-EX)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-EZ))((Y-EY)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-EZ)))=$$
+    $$\E(X^\prime Y^\prime)=\E(((X-\E X)-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}(Z-\E Z))((Y-\E Y)-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}(Z-\E Z)))=$$
     $$=\sigma_{XY}-\dfrac{\sigma_{YZ}}{\sigma_{ZZ}}\sigma_{XZ}-\dfrac{\sigma_{XZ}}{\sigma_{ZZ}}\sigma_{YZ}+
     \dfrac{\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}\sigma_{ZZ}}\sigma_{ZZ}=\dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}$$
     Тогда:
     $$
-    \rho^{XY \cdot Z}=\dfrac{E(X^{\prime} Y^{\prime})}{\sqrt{E({X^{\prime}}^2) E({Y^{\prime}}^2)}}=\dfrac{\dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}}
+    \rho^{XY \cdot Z}=\dfrac{\E(X^{\prime} Y^{\prime})}{\sqrt{\E({X^{\prime}}^2) \E({Y^{\prime}}^2)}}=\dfrac{\dfrac{\sigma_{XY}\sigma_{ZZ}-\sigma_{XZ}\sigma_{YZ}}{\sigma_{ZZ}}}
     {\sqrt{
         \dfrac{\sigma_{XX}\sigma_{ZZ}-\sigma_{XZ}\sigma_{XZ}}{\sigma_{ZZ}}
     }\sqrt{
@@ -71,16 +75,16 @@ $$
 \end{proof}
 
 Для дальнейших рассуждений используем следующие обозначения: 
-$$p_{x**}=P(X=x), \; p_{*y*}=P(Y=y), \; p_{**z}=P(Z=z)$$ 
-$$  p_{xy*}=P(X=x, Y=y),\; p_{x*z}=P(X=x, Z=z), \; p_{*yz}=P(Y=y, Z=z)$$
+$$p_{x**}=\Prb(X=x), \; p_{*y*}=\Prb(Y=y), \; p_{**z}=\Prb(Z=z),$$ 
+$$  p_{xy*}=\Prb(X=x, Y=y),\; p_{x*z}=\Prb(X=x, Z=z), \; p_{*yz}=\Prb(Y=y, Z=z)$$
 Найдем значение выражения $\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}$ в трехмерном распределении Бернулли.
 \begin{lemma}\label{partial_cov}
     Пусть $(X,Y,Z)^T$ -- случайный вектор, имеющий трехмерное распределение Бернулли. Тогда:
     $$\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})$$
 \end{lemma}
 \begin{proof}
-    Легко проверить, что $\sigma_{ZZ}= p_{**1}(1-p_{**1})$. Найдем соотношение для $\sigma_{XY}$. Воспользуемся формулой $\sigma_{XY}=E(X Y)-E(X)E(Y)$.
-    $$E(X Y) = 1 \cdot p_{11*} + 0 \cdot (p_{00*} + p_{01*} + p_{10*})=p_{11*}$$
+    Легко проверить, что $\sigma_{ZZ}= p_{**1}(1-p_{**1})$. Найдем соотношение для $\sigma_{XY}$. Воспользуемся формулой $\sigma_{XY}=\E(X Y)-\E(X)\E(Y)$.
+    $$\E(X Y) = 1 \cdot p_{11*} + 0 \cdot (p_{00*} + p_{01*} + p_{10*})=p_{11*}$$
     Таким образом, $\sigma_{XY}=p_{11*}-p_{1**}p_{*1*}$. Аналогично, $\sigma_{XZ}=p_{1*1}-p_{1**}p_{**1}$ и $\sigma_{YZ}=p_{*11}-p_{*1*}p_{**1}$.
     Преобразуем выражение $\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ} =$
     $$
@@ -149,7 +153,8 @@ $$  p_{xy*}=P(X=x, Y=y),\; p_{x*z}=P(X=x, Z=z), \; p_{*yz}=P(Y=y, Z=z)$$
     \sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ} = p_{**0}(p_{001}p_{111}-p_{011}p_{101}) + p_{**1} (p_{000}p_{110}-p_{010}p_{100})
     $$
 \end{proof}
-Вышеприведенное соотношение для $\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}$ позволяет доказать следующую теорему.
+Вышеприведенное соотношение для $\sigma_{XY} \sigma_{ZZ} - \sigma_{XZ} \sigma_{YZ}$ 
+в трехмерном распределении Бернулли позволяет доказать следующую теорему.
 \begin{theorem}\label{1.2}
     Пусть $(X,Y,Z)^T$ -- случайный вектор, имеющий трехмерное распределение Бернулли.
     Если $X \ci Y \mid Z$, то $\rho^{XY \cdot Z}=0$.
@@ -211,7 +216,7 @@ $$  p_{xy*}=P(X=x, Y=y),\; p_{x*z}=P(X=x, Z=z), \; p_{*yz}=P(Y=y, Z=z)$$
 реализация повторной выборки из распределения случайного вектора $(X,Y,Z)^T$.
 
 \begin{definition}
-    Выборочным частным коэффициентом корреляции Пирсона называется
+    Выборочным частным коэффициентом корреляции Пирсона называется:
     $$r^{XY\cdot Z}=\dfrac{r_{XY}-r_{XZ}r_{YZ}}{\sqrt{1-r_{XZ}^2}\sqrt{1-r_{YZ}^2}}$$
     где 
     $r_{XY}=\dfrac{\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y})}
@@ -237,7 +242,7 @@ $$
 \end{cases}
 $$
 где константа $C$ удовлетворяет уравнению
-$P_{H^{\text{Partial}}}(T^{\text{Partial}}>C)=1-\alpha/2$.
+$\Prb_{H^{\text{Partial}}}(T^{\text{Partial}}>C)=1-\alpha/2$.
 % Предположим, что $\varphi^{\text{Partial}}$ является тестом
 % уровня $\alpha$ для проверки гипотезы $\rho^{XY \cdot Z}=0$ в трехмерном распределении Бернулли. 
 % Поскольку из $X \ci Y \mid Z$ следует $\rho^{XY\cdot Z}=0$, то 

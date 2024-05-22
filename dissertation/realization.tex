@@ -4,9 +4,9 @@
 (см. \autoref{expon_form_section}, \autoref{bivariate_umpu})
 возникает необходимость
 подсчета вероятностей вида:
-$$P_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^p k_i(u)!)^{-1}}
+$$\Prb_{\theta=0}(U=u \mid T=t)=\dfrac{(\prod_{i=1}^p k_i(u)!)^{-1}}
             {\sum_{s\in \mathcal{D}} (\prod_{i=1}^p k_i(s)!)^{-1}}$$
-где $\mathcal{D}$ -- некая область допустимых значений,
+где $\mathcal{D} \subset \mathbb{Z}$,
 $k_i(u):\mathcal{D} \to \{0,\ldots,n\}$.
 Основную проблему в этой формуле представляют 
 факториалы, вычисление которых затруднительно на ЭВМ. 
@@ -22,7 +22,7 @@ $k_i(u):\mathcal{D} \to \{0,\ldots,n\}$.
     $$
     $$
     = \dfrac{\exp \{ -\sum_{i=1}^p f(k_i(u)) \}}
-    {\sum_{s \in D} \exp \{ -\sum_{i=1}^p f(k_i(s)) \}}
+    {\sum_{s \in \mathcal{D}} \exp \{ -\sum_{i=1}^p f(k_i(s)) \}}
     $$
 Полученное выражение удобно с позиции того, что оно не требует подсчета факториалов и ЭВМ умеют 
 эффективно вычислять функцию softmax \cite{softmax}:
